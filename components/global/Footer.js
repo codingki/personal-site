@@ -8,7 +8,13 @@ import { AntDesign } from '@expo/vector-icons';
 const { width, height } = Dimensions.get('window');
 export default () => {
 	return (
-		<View style={{ flexDirection: 'row', marginTop: 50 }}>
+		<View
+			style={{
+				flexDirection: 'row',
+				paddingTop: 50,
+				backgroundColor: Colors.yellow,
+			}}
+		>
 			<View
 				style={{
 					flex: 1,

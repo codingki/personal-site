@@ -1,10 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
-import Text from './utils/StyledText';
-import Colors from '../constants/Colors';
-import Wrapper from './global/Wrapper';
-import Button from './button/Button';
-import PostCard from './card/PostCard';
+import Wrapper from '../../../components/global/Wrapper';
+import Button from '../../../components/button/Button';
+import WorkCard from '../../card/WorkCard';
+
 export default () => {
 	return (
 		<Wrapper style={{ marginTop: 50 }}>
@@ -21,19 +20,17 @@ export default () => {
 						justifyContent: 'space-between',
 					}}
 				>
-					<Button disabled blue text="Recent Posts" width={180} />
-					<Button text="View All" />
+					<Button disabled blue text="All Works" width={180} />
 				</View>
 				<View
 					style={{
-						marginTop: 25,
 						flex: 1,
-						flexDirection: 'row',
-						justifyContent: 'space-between',
+						flexDirection: 'column',
 					}}
 				>
-					<PostCard />
-					<PostCard />
+					<WorkCard />
+					<WorkCard />
+					<WorkCard />
 				</View>
 			</View>
 		</Wrapper>

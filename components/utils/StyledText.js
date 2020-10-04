@@ -13,7 +13,15 @@ export default function NunitoText(props) {
 						: props.medium
 						? 'Montserrat_500Medium'
 						: 'Montserrat_400Regular',
-					fontSize: props.h1 ? 44 : props.h3 ? 30 : props.h4 ? 24 : 16,
+					fontSize: props.h1
+						? 44
+						: props.h3
+						? 30
+						: props.h4
+						? 24
+						: props.p
+						? 16
+						: props.style.fontSize,
 				},
 			]}
 		/>

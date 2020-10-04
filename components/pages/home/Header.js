@@ -1,12 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, View, Dimensions, Image } from 'react-native';
-import Text from './utils/StyledText';
-import Colors from '../constants/Colors';
-import TopNav from './global/TopNav';
-import Wrapper from './global/Wrapper';
-import Button from './button/Button';
-const { width, height } = Dimensions.get('window');
+import { View, Dimensions, Image } from 'react-native';
+import Text from '../../utils/StyledText';
+import Colors from '../../../constants/Colors';
+import Wrapper from '../../global/Wrapper';
+import Button from '../../button/Button';
 export default () => {
 	return (
 		<Wrapper style={{ marginTop: 50 }}>
@@ -26,7 +23,7 @@ export default () => {
 						<Text bold h1>
 							Hi, I am Kiki, {'\n'}Creative Technologist
 						</Text>
-						<Text style={{ marginTop: 10, marginBottom: 15, lineHeight: 24 }}>
+						<Text p style={{ marginTop: 10, marginBottom: 15, lineHeight: 24 }}>
 							Amet minim mollit non deserunt ullamco est sit aliqua dolor do
 							amet sint. Velit officia consequat duis enim velit mollit.
 							Exercitation veniam consequat sunt nostrud amet.
@@ -46,7 +43,7 @@ export default () => {
 								width: 200,
 								height: 200,
 							}}
-							source={require('../assets/images/me.png')}
+							source={require('../../../assets/images/me.png')}
 						/>
 					</View>
 				</View>

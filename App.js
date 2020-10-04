@@ -8,7 +8,7 @@ import {
 	Montserrat_500Medium,
 	Montserrat_700Bold,
 } from '@expo-google-fonts/montserrat';
-
+import Colors from './constants/Colors';
 import AppNavigator from './navigation/AppNavigator';
 
 export default function App(props) {
@@ -63,5 +63,6 @@ function handleFinishLoading(setLoadingComplete) {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		backgroundColor: Colors.yellow,
 	},
 });

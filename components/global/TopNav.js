@@ -3,8 +3,9 @@ import { StyleSheet, View, Dimensions } from 'react-native';
 import Text from '../utils/StyledText';
 import Colors from '../../constants/Colors';
 import Button from '../button/Button';
+import { Link } from '@react-navigation/native';
 const { width, height } = Dimensions.get('window');
-export default () => {
+export default (props) => {
 	return (
 		<View style={{ flexDirection: 'row' }}>
 			<View
@@ -31,7 +32,13 @@ export default () => {
 							alignItems: 'flex-start',
 						}}
 					>
-						<Button text="Home" blue />
+						<Button
+							onPress={() => {
+								props.navigation.navigate('Home');
+							}}
+							text="Home"
+							blue={props.active == 'home' ? true : false}
+						/>
 					</View>
 
 					<View
@@ -42,9 +49,28 @@ export default () => {
 							justifyContent: 'space-between',
 						}}
 					>
-						<Button text="Works" />
-						<Button text="Blog" />
-						<Button text="Contact" />
+						<Button
+							onPress={() => {
+								props.navigation.navigate('Works');
+							}}
+							text="Works"
+							blue={props.active == 'works' ? true : false}
+						/>
+
+						<Button
+							onPress={() => {
+								props.navigation.navigate('Blog');
+							}}
+							text="Blog"
+							blue={props.active == 'blog' ? true : false}
+						/>
+						<Button
+							onPress={() => {
+								props.navigation.navigate('Contact');
+							}}
+							text="Contact"
+							blue={props.active == 'contact' ? true : false}
+						/>
 					</View>
 				</View>
 			</View>

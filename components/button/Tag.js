@@ -7,34 +7,24 @@ export default (props) => {
 	const bg = props.blue ? Colors.blue : props.orange ? Colors.orange : 'white';
 	const txt = props.blue ? 'white' : props.orange ? 'white' : Colors.black;
 	return (
-		<TouchableOpacity
-			onPress={props.onPress}
-			disabled={props.disabled ? true : false}
-		>
+		<TouchableOpacity disabled={props.disabled ? true : false}>
 			<View
 				style={{
 					backgroundColor: bg,
 					borderColor: Colors.black,
 					borderWidth: 3,
 					borderBottomWidth: 6,
-					paddingHorizontal: 20,
+					paddingHorizontal: 12,
 					paddingVertical: 5,
 					borderRadius: 12,
-					width: props.width ? props.width : 120,
 					alignItems: 'center',
+					marginRight: 5,
 				}}
 			>
-				<Text p bold style={{ color: txt }}>
+				<Text bold style={{ color: txt, fontSize: 14 }}>
 					{props.text}
 				</Text>
 			</View>
 		</TouchableOpacity>
 	);
 };
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: Colors.yellow,
-	},
-});

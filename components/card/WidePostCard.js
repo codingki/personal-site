@@ -6,13 +6,14 @@ export default () => {
 	return (
 		<View
 			style={{
-				width: 374,
+				flex: 1,
 				backgroundColor: 'white',
 				borderColor: Colors.black,
 				borderWidth: 3,
 				borderBottomWidth: 6,
 				borderRadius: 12,
 				padding: 20,
+				marginTop: 25,
 			}}
 		>
 			<Text bold h4 numberOfLines={1}>

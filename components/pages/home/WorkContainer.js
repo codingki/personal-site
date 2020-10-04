@@ -1,10 +1,8 @@
 import React from 'react';
-import { View, Image } from 'react-native';
-import Text from '../components/utils/StyledText';
-import Colors from '../constants/Colors';
-import Wrapper from '../components/global/Wrapper';
-import Button from '../components/button/Button';
-import WorkCard from './card/WorkCard';
+import { View } from 'react-native';
+import Wrapper from '../../../components/global/Wrapper';
+import Button from '../../../components/button/Button';
+import WorkCard from '../../card/WorkCard';
 
 export default () => {
 	return (

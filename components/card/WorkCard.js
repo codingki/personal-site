@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image } from 'react-native';
 import Text from '../../components/utils/StyledText';
 import Colors from '../../constants/Colors';
-
+import Button from '../button/Tag';
 export default () => {
 	return (
 		<View
@@ -45,12 +45,12 @@ export default () => {
 				<Text bold h4 numberOfLines={1}>
 					Making a design system from
 				</Text>
-				<Text style={{ fontSize: 14, marginVertical: 10 }}>
-					12 Feb 2020 | Design Patterns
-				</Text>
+
 				<Text
+					p
 					style={{
 						lineHeight: 24,
+						marginVertical: 10,
 					}}
 					numberOfLines={2}
 				>
@@ -58,6 +58,10 @@ export default () => {
 					sint. Velit officia consequat duis enim velit mollitenim velit
 					mollitVelit officia consequat duis enim velit mollitenim velit mollit
 				</Text>
+				<View style={{ flexDirection: 'row' }}>
+					<Button text="Redesign" orange />
+					<Button text="Redesign" orange />
+				</View>
 			</View>
 		</View>
 	);
