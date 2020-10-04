@@ -12,11 +12,12 @@ export default (props) => {
 				style={{
 					flex: 1,
 					backgroundColor: Colors.orange,
-					height: 82,
+					minHeight: 82,
 					borderBottomColor: Colors.black,
 					borderBottomWidth: 3,
 					justifyContent: 'center',
 					alignItems: 'center',
+					paddingVertical: 25,
 				}}
 			>
 				<View

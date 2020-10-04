@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import Wrapper from '../../global/Wrapper';
 import Button from '../../button/Button';
 import PostCard from '../../card/WidePostCard';
+
 export default () => {
 	return (
 		<Wrapper style={{ marginTop: 50 }}>
@@ -19,7 +20,7 @@ export default () => {
 						justifyContent: 'space-between',
 					}}
 				>
-					<Button disabled blue text="All Posts" width={180} />
+					<Button disabled blue text="All Posts" width={150} />
 				</View>
 				<View
 					style={{

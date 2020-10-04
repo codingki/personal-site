@@ -1,36 +1,39 @@
-import '@expo/match-media';
-import { useMediaQuery } from 'react-responsive';
 import React from 'react';
 import { StyleSheet, View, Dimensions, TouchableOpacity } from 'react-native';
 import Text from '../utils/StyledText';
 import Colors from '../../constants/Colors';
-import Button from '../button/Button';
-import { Ionicons } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
 const { width, height } = Dimensions.get('window');
-
 export default (props) => {
-	const isTabletOrMobileDevice = useMediaQuery({
-		maxDeviceWidth: 768,
-	});
+	const bg = props.blue ? Colors.blue : props.orange ? Colors.orange : 'white';
+	const txt = props.blue ? 'white' : props.orange ? 'white' : Colors.black;
 	return (
-		<TouchableOpacity>
+		<TouchableOpacity
+			onPress={props.onPress}
+			disabled={props.disabled ? true : false}
+		>
 			<View
 				style={{
-					backgroundColor: 'white',
+					backgroundColor: bg,
 					borderColor: Colors.black,
 					borderWidth: 3,
 					borderBottomWidth: 6,
-					width: 55,
+					paddingHorizontal: 10,
 					paddingVertical: 5,
 					borderRadius: 12,
 					alignItems: 'center',
-					marginLeft: isTabletOrMobileDevice ? 0 : 10,
-					marginHorizontal: isTabletOrMobileDevice ? 5 : 0,
 				}}
 			>
-				{props.children}
+				<Text bold style={{ color: txt, fontSize: 14 }}>
+					{props.text}
+				</Text>
 			</View>
 		</TouchableOpacity>
 	);
 };
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		backgroundColor: Colors.yellow,
+	},
+});

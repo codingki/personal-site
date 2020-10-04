@@ -7,6 +7,7 @@ export default () => {
 		<View
 			style={{
 				flex: 1,
+				flexDirection: 'column',
 				backgroundColor: 'white',
 				borderColor: Colors.black,
 				borderWidth: 3,
@@ -16,7 +17,7 @@ export default () => {
 				marginTop: 25,
 			}}
 		>
-			<Text bold h4 numberOfLines={1}>
+			<Text bold h4 numberOfLines={2}>
 				Making a design system from
 			</Text>
 			<Text style={{ fontSize: 14, marginVertical: 10 }}>

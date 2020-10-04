@@ -1,10 +1,17 @@
+import '@expo/match-media';
+import { useMediaQuery } from 'react-responsive';
 import React from 'react';
 import { View } from 'react-native';
 import Wrapper from '../../../components/global/Wrapper';
 import Button from '../../../components/button/Button';
+import MobileButton from '../../../components/button/MobileButton';
 import WorkCard from '../../card/WorkCard';
+import WideWorkCard from '../../card/WideWorkCard';
 
 export default () => {
+	const isTabletOrMobileDevice = useMediaQuery({
+		maxDeviceWidth: 768,
+	});
 	return (
 		<Wrapper style={{ marginTop: 50 }}>
 			<View
@@ -20,8 +27,17 @@ export default () => {
 						justifyContent: 'space-between',
 					}}
 				>
-					<Button disabled blue text="Featured Works" width={180} />
-					<Button text="View All" />
+					{isTabletOrMobileDevice ? (
+						<>
+							<MobileButton disabled blue text="Featured Works" width={180} />
+							<MobileButton text="View All" />{' '}
+						</>
+					) : (
+						<>
+							<Button disabled blue text="Featured Works" width={180} />
+							<Button text="View All" />{' '}
+						</>
+					)}
 				</View>
 				<View
 					style={{
@@ -29,8 +45,17 @@ export default () => {
 						flexDirection: 'column',
 					}}
 				>
-					<WorkCard />
-					<WorkCard />
+					{isTabletOrMobileDevice ? (
+						<>
+							<WideWorkCard />
+							<WideWorkCard />
+						</>
+					) : (
+						<>
+							<WorkCard />
+							<WorkCard />
+						</>
+					)}
 				</View>
 			</View>
 		</Wrapper>
