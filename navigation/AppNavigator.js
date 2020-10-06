@@ -21,7 +21,7 @@ const stacks = () => {
 	return (
 		<NavigationContainer linking={linking}>
 			<Stack.Navigator
-				initialRouteName="SingleBlog"
+				initialRouteName="Home"
 				screenOptions={{
 					headerMode: 'none',
 					headerShown: false,

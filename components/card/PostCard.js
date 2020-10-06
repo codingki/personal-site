@@ -2,7 +2,8 @@ import React from 'react';
 import { View } from 'react-native';
 import Text from '../utils/StyledText';
 import Colors from '../../constants/Colors';
-export default () => {
+import { Link } from 'expo-next-react-navigation';
+export default (props) => {
 	return (
 		<View
 			style={{
@@ -16,10 +17,10 @@ export default () => {
 			}}
 		>
 			<Text bold h4 numberOfLines={1}>
-				Making a design system from
+				<Link routeName={'blog/' + props.id}>{props.title}</Link>
 			</Text>
 			<Text style={{ fontSize: 14, marginVertical: 10 }}>
-				12 Feb 2020 | Design Patterns
+				{props.date} | {props.category}
 			</Text>
 			<Text
 				p
@@ -28,8 +29,7 @@ export default () => {
 				}}
 				numberOfLines={3}
 			>
-				Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
-				sint. Velit officia consequat duis enim velit mollit
+				{props.excerpt}
 			</Text>
 		</View>
 	);

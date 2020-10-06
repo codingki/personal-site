@@ -48,7 +48,16 @@ export default () => {
 							amet sint. Velit officia consequat duis enim velit mollit.
 							Exercitation veniam consequat sunt nostrud amet.
 						</Text>
-						<Button width={220} orange text="Download Resume" />
+
+						<iframe
+							src="https://ghbtns.com/github-btn.html?user=codingki&repo=personal-site&type=star&count=true&size=large"
+							frameborder="0"
+							scrolling="0"
+							width="170"
+							height="30"
+							title="GitHub"
+						></iframe>
+						{/* <Button width={220} orange text="Download Resume" /> */}
 					</View>
 					{!isTabletOrMobileDevice && (
 						<View

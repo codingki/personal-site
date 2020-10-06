@@ -3,7 +3,10 @@ import { View, Image } from 'react-native';
 import Text from '../../components/utils/StyledText';
 import Colors from '../../constants/Colors';
 import Button from '../button/Tag';
-export default () => {
+import { Link } from 'expo-next-react-navigation';
+export default (props) => {
+	const tags = props.category.split(', ');
+
 	return (
 		<View
 			style={{
@@ -12,25 +15,27 @@ export default () => {
 				alignItems: 'center',
 			}}
 		>
-			<Image
-				style={{
-					width: 225,
-					height: 225,
-					borderColor: Colors.black,
-					borderWidth: 3,
-					borderBottomWidth: 6,
-					borderRadius: 12,
-				}}
-				resizeMode="cover"
-				source={{
-					uri: 'https://via.placeholder.com/150',
-				}}
-			/>
+			<Link routeName={'works/' + props.id}>
+				<Image
+					style={{
+						width: 225,
+						height: 225,
+						borderColor: Colors.black,
+						borderWidth: 3,
+						borderBottomWidth: 6,
+						borderRadius: 12,
+					}}
+					resizeMode="cover"
+					source={{
+						uri: props.image,
+					}}
+				/>
+			</Link>
 
 			<View
 				style={{
 					flex: 1,
-					height: 180,
+					height: 190,
 					backgroundColor: 'white',
 					borderColor: Colors.black,
 					borderWidth: 3,
@@ -43,7 +48,7 @@ export default () => {
 				}}
 			>
 				<Text bold h4 numberOfLines={1}>
-					Making a design system from
+					<Link routeName={'works/' + props.id}>{props.title}</Link>
 				</Text>
 
 				<Text
@@ -54,13 +59,12 @@ export default () => {
 					}}
 					numberOfLines={2}
 				>
-					Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
-					sint. Velit officia consequat duis enim velit mollitenim velit
-					mollitVelit officia consequat duis enim velit mollitenim velit mollit
+					{props.excerpt}
 				</Text>
 				<View style={{ flexDirection: 'row' }}>
-					<Button text="Redesign" orange />
-					<Button text="Redesign" orange />
+					{tags.map((x) => (
+						<Button text={x} orange />
+					))}
 				</View>
 			</View>
 		</View>

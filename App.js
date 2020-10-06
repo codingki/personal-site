@@ -42,6 +42,7 @@ async function loadResourcesAsync() {
 		Asset.loadAsync([
 			require('./assets/icon.png'),
 			require('./assets/splash.png'),
+			require('./assets/images/me.png'),
 		]),
 		Font.loadAsync({
 			Montserrat_400Regular,

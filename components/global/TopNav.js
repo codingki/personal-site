@@ -3,7 +3,7 @@ import { StyleSheet, View, Dimensions } from 'react-native';
 import Text from '../utils/StyledText';
 import Colors from '../../constants/Colors';
 import Button from '../button/Button';
-import { Link } from '@react-navigation/native';
+import { Link } from 'expo-next-react-navigation';
 const { width, height } = Dimensions.get('window');
 export default (props) => {
 	return (
@@ -33,13 +33,12 @@ export default (props) => {
 							alignItems: 'flex-start',
 						}}
 					>
-						<Button
-							onPress={() => {
-								props.navigation.navigate('Home');
-							}}
-							text="Home"
-							blue={props.active == 'home' ? true : false}
-						/>
+						<Link routeName="./">
+							<Button
+								text="Home"
+								blue={props.active == 'home' ? true : false}
+							/>
+						</Link>
 					</View>
 
 					<View
@@ -50,28 +49,27 @@ export default (props) => {
 							justifyContent: 'space-between',
 						}}
 					>
-						<Button
-							onPress={() => {
-								props.navigation.navigate('Works');
-							}}
-							text="Works"
-							blue={props.active == 'works' ? true : false}
-						/>
-
-						<Button
-							onPress={() => {
-								props.navigation.navigate('Blog');
-							}}
-							text="Blog"
-							blue={props.active == 'blog' ? true : false}
-						/>
-						<Button
-							onPress={() => {
-								props.navigation.navigate('Contact');
-							}}
-							text="Contact"
-							blue={props.active == 'contact' ? true : false}
-						/>
+						<Link routeName="works">
+							<Button
+								text="Works"
+								blue={props.active == 'works' ? true : false}
+							/>
+						</Link>
+						<Link routeName="blog">
+							<Button
+								text="Blog"
+								blue={props.active == 'blog' ? true : false}
+							/>
+						</Link>
+						<a
+							href="mailto: codingki@gmail.com"
+							style={{ textDecoration: 'none' }}
+						>
+							<Button
+								text="Contact"
+								blue={props.active == 'contact' ? true : false}
+							/>
+						</a>
 					</View>
 				</View>
 			</View>

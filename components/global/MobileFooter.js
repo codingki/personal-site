@@ -39,25 +39,50 @@ export default () => {
 							justifyContent: 'center',
 						}}
 					>
-						<SocialMedia>
-							<Ionicons name="logo-instagram" size={24} color={Colors.black} />
-						</SocialMedia>
-						<SocialMedia>
-							<Ionicons name="logo-twitter" size={24} color={Colors.black} />
-						</SocialMedia>
-						<SocialMedia>
-							<Ionicons name="logo-facebook" size={24} color={Colors.black} />
-						</SocialMedia>
-						<SocialMedia>
-							<Ionicons name="logo-linkedin" size={24} color={Colors.black} />
-						</SocialMedia>
-						<SocialMedia>
-							<AntDesign
-								name="medium-monogram"
-								size={24}
-								color={Colors.black}
-							/>
-						</SocialMedia>
+						<a
+							style={{ textDecoration: 'none' }}
+							href="https://www.instagram.com/kikidding/"
+							target="_blank"
+						>
+							<SocialMedia>
+								<Ionicons
+									name="logo-instagram"
+									size={24}
+									color={Colors.black}
+								/>
+							</SocialMedia>
+						</a>
+						<a
+							style={{ textDecoration: 'none' }}
+							href="https://twitter.com/kikiding"
+							target="_blank"
+						>
+							<SocialMedia>
+								<Ionicons name="logo-twitter" size={24} color={Colors.black} />
+							</SocialMedia>
+						</a>
+						<a
+							style={{ textDecoration: 'none' }}
+							href="https://github.com/codingki"
+							target="_blank"
+						>
+							<SocialMedia>
+								<AntDesign name="github" size={24} color={Colors.black} />
+							</SocialMedia>
+						</a>
+						<a
+							style={{ textDecoration: 'none' }}
+							href="https://medium.com/@kikidding/"
+							target="_blank"
+						>
+							<SocialMedia>
+								<AntDesign
+									name="medium-monogram"
+									size={24}
+									color={Colors.black}
+								/>
+							</SocialMedia>
+						</a>
 					</View>
 				</View>
 			</View>

@@ -7,8 +7,8 @@ import Button from '../../../components/button/Button';
 import MobileButton from '../../../components/button/MobileButton';
 import WorkCard from '../../card/WorkCard';
 import WideWorkCard from '../../card/WideWorkCard';
-
-export default () => {
+import { Link } from 'expo-next-react-navigation';
+export default (props) => {
 	const isTabletOrMobileDevice = useMediaQuery({
 		maxDeviceWidth: 768,
 	});
@@ -29,13 +29,17 @@ export default () => {
 				>
 					{isTabletOrMobileDevice ? (
 						<>
-							<MobileButton disabled blue text="Featured Works" width={180} />
-							<MobileButton text="View All" />{' '}
+							<MobileButton disabled blue text="Recent Works" width={180} />
+							<Link routeName="works">
+								<MobileButton text="View All" />
+							</Link>
 						</>
 					) : (
 						<>
-							<Button disabled blue text="Featured Works" width={180} />
-							<Button text="View All" />{' '}
+							<MobileButton disabled blue text="Recent Works" width={180} />
+							<Link routeName="works">
+								<MobileButton text="View All" />
+							</Link>
 						</>
 					)}
 				</View>
@@ -45,17 +49,29 @@ export default () => {
 						flexDirection: 'column',
 					}}
 				>
-					{isTabletOrMobileDevice ? (
-						<>
-							<WideWorkCard />
-							<WideWorkCard />
-						</>
-					) : (
-						<>
-							<WorkCard />
-							<WorkCard />
-						</>
-					)}
+					{isTabletOrMobileDevice
+						? props.data.map(({ id, image, title, category, excerpt }) => (
+								<WideWorkCard
+									key={id}
+									id={id}
+									category={category}
+									image={image}
+									title={title}
+									excerpt={excerpt}
+								/>
+						  ))
+						: props.data.map(
+								({ id, date, title, category, excerpt, image }) => (
+									<WorkCard
+										key={id}
+										id={id}
+										category={category}
+										title={title}
+										image={image}
+										excerpt={excerpt}
+									/>
+								)
+						  )}
 				</View>
 			</View>
 		</Wrapper>

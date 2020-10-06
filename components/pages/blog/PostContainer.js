@@ -4,7 +4,7 @@ import Wrapper from '../../global/Wrapper';
 import Button from '../../button/Button';
 import PostCard from '../../card/WidePostCard';
 
-export default () => {
+export default (props) => {
 	return (
 		<Wrapper style={{ marginTop: 50 }}>
 			<View
@@ -28,8 +28,16 @@ export default () => {
 						flexDirection: 'column',
 					}}
 				>
-					<PostCard />
-					<PostCard />
+					{props.data.map(({ id, date, title, category, excerpt }) => (
+						<PostCard
+							key={id}
+							id={id}
+							title={title}
+							date={date}
+							excerpt={excerpt}
+							category={category}
+						/>
+					))}
 				</View>
 			</View>
 		</Wrapper>

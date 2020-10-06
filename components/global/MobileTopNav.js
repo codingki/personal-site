@@ -5,6 +5,7 @@ import Colors from '../../constants/Colors';
 import MenuButton from '../button/MobileMenu';
 import Button from '../button/FullButton';
 import { Entypo } from '@expo/vector-icons';
+import { Link } from 'expo-next-react-navigation';
 const { width, height } = Dimensions.get('window');
 export default (props) => {
 	const [open, setOpen] = useState(false);
@@ -47,34 +48,33 @@ export default (props) => {
 						</View>
 						{open && (
 							<View>
-								<Button
-									onPress={() => {
-										props.navigation.navigate('Home');
-									}}
-									blue={props.active == 'home' ? true : false}
-									text="Home"
-								/>
-								<Button
-									onPress={() => {
-										props.navigation.navigate('Works');
-									}}
-									blue={props.active == 'works' ? true : false}
-									text="Works"
-								/>
-								<Button
-									onPress={() => {
-										props.navigation.navigate('Blog');
-									}}
-									blue={props.active == 'blog' ? true : false}
-									text="Blog"
-								/>
-								<Button
-									onPress={() => {
-										props.navigation.navigate('Contact');
-									}}
-									blue={props.active == 'contact' ? true : false}
-									text="Contact"
-								/>
+								<Link routeName="./">
+									<Button
+										blue={props.active == 'home' ? true : false}
+										text="Home"
+									/>
+								</Link>
+								<Link routeName="works">
+									<Button
+										blue={props.active == 'works' ? true : false}
+										text="Works"
+									/>
+								</Link>
+								<Link routeName="blog">
+									<Button
+										blue={props.active == 'blog' ? true : false}
+										text="Blog"
+									/>
+								</Link>
+								<a
+									href="mailto: codingki@gmail.com"
+									style={{ textDecoration: 'none' }}
+								>
+									<Button
+										blue={props.active == 'contact' ? true : false}
+										text="Contact"
+									/>
+								</a>
 							</View>
 						)}
 					</View>
