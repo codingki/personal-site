@@ -62,8 +62,8 @@ export default (props) => {
 					{props.excerpt}
 				</Text>
 				<View style={{ flexDirection: 'row' }}>
-					{tags.map((x) => (
-						<Button text={x} orange />
+					{tags.map((x, index) => (
+						<Button key={index} text={x} orange />
 					))}
 				</View>
 			</View>

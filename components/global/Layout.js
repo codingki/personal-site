@@ -20,28 +20,15 @@ export default function App(props) {
 	const isTabletOrMobileDevice = useMediaQuery({
 		maxDeviceWidth: 768,
 	});
-	// const [loaded, setLoaded] = useState(false);
-	// useEffect(() => {
-	// 	(async () => {
-	// 		try {
-	// 			Font.loadAsync({
-	// 				Montserrat_400Regular,
-	// 				Montserrat_500Medium,
-	// 				Montserrat_700Bold,
-	// 			});
-	// 		} catch ({ message }) {
-	// 			// This will be called if something is broken
-	// 			console.log(`Error loading font: ${message}`);
-	// 		} finally {
-	// 			setLoaded(true);
-	// 		}
-	// 	})();
-	// }, []);
 
 	return (
 		<>
 			<Head>
-				<title>Welcome to my site</title>
+				<link
+					rel="icon"
+					type="image/png"
+					href="https://i.ibb.co/vkyMyjz/rsz-11me.png"
+				/>
 			</Head>
 			<View style={styles.container}>
 				{isTabletOrMobileDevice ? (

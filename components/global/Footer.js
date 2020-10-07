@@ -43,7 +43,7 @@ export default () => {
 					>
 						<a
 							style={{ textDecoration: 'none' }}
-							href="https://www.instagram.com/kikidding/"
+							href="https://www.instagram.com/kikiding/"
 							target="_blank"
 						>
 							<SocialMedia>

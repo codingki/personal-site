@@ -5,9 +5,11 @@ import Colors from '../../constants/Colors';
 import Layout from '../../components/global/Layout';
 import Wrapper from '../../components/global/Wrapper';
 import Button from '../../components/button/Tag';
+import HTML from 'react-native-render-html';
 import { Ionicons } from '@expo/vector-icons';
 import { getAllPostIds, getPostData } from '../../lib/posts';
 import Head from 'next/head';
+var moment = require('moment');
 export default function App({ postData }) {
 	const tags = postData.category.split(', ');
 	return (
@@ -18,6 +20,13 @@ export default function App({ postData }) {
 					href="https://fonts.googleapis.com/css?family=Montserrat"
 					rel="stylesheet"
 				/>
+				<meta name="description" content={postData.excerpt} />
+				<meta
+					property="og:image"
+					content={`https://images.bannerbear.com/requests/images/000/288/700/original/a3055043626673f8c6fc4bbee64221a93a9ae266.png?1602078565`}
+				/>
+				<meta name="og:title" content={postData.title} />
+				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
 			<Layout page="blog">
 				<Wrapper>
@@ -60,25 +69,35 @@ export default function App({ postData }) {
 								}}
 							>
 								<Text medium style={{ color: 'white', fontSize: 14 }}>
-									{postData.date} | {postData.category}
+									{moment(postData.date).format('D MMM YY')} |{' '}
+									{postData.category}
 								</Text>
 							</View>
 						</View>
 
 						<View style={{ padding: 20, paddingVertical: 10 }}>
-							<div
-								style={{ fontFamily: 'Montserrat', lineHeight: 1.8 }}
-								dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
+							<HTML
+								textSelectable
+								html={postData.contentHtml}
+								baseFontStyle={{
+									fontSize: 16,
+									lineHeight: 24,
+									fontFamily: 'Montserrat',
+								}}
+								tagsStyles={{
+									img: { width: 600 },
+								}}
 							/>
 						</View>
 						<View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
 							<a
-								rel="canonical"
 								style={{ textDecoration: 'none' }}
 								href={
 									'https://twitter.com/intent/tweet?text=' +
 									postData.title +
-									' by @kikiding'
+									' by @kikiding ' +
+									'https://kikiding.space/blog/' +
+									postData.id
 								}
 								target="_blank"
 							>

@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import Text from '../utils/StyledText';
 import Colors from '../../constants/Colors';
 import { Link } from 'expo-next-react-navigation';
+var moment = require('moment');
 export default (props) => {
 	return (
 		<View
@@ -22,7 +23,7 @@ export default (props) => {
 				<Link routeName={'blog/' + props.id}>{props.title}</Link>
 			</Text>
 			<Text style={{ fontSize: 14, marginVertical: 10 }}>
-				{props.date} | {props.category}
+				{moment(props.date).format('D MMM YY')} | {props.category}
 			</Text>
 			<Text
 				p
