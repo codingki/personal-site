@@ -26,6 +26,13 @@ export default function App({ postData }) {
 					href="https://fonts.googleapis.com/css?family=Montserrat"
 					rel="stylesheet"
 				/>
+				<meta name="description" content={postData.excerpt} />
+				<meta
+					property="og:image"
+					content={`https://images.bannerbear.com/requests/images/000/288/700/original/a3055043626673f8c6fc4bbee64221a93a9ae266.png?1602078565`}
+				/>
+				<meta name="og:title" content={postData.title} />
+				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
 			<Layout page="works">
 				<Wrapper>
