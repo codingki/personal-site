@@ -1,6 +1,5 @@
-import '@expo/match-media';
 import { useMediaQuery } from 'react-responsive';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text } from 'react-native';
 import Wrapper from '../../global/Wrapper';
 import Button from '../../button/Button';
@@ -9,7 +8,11 @@ import PostCard from '../../card/PostCard';
 import WidePostCard from '../../card/WidePostCard';
 import { Link } from 'expo-next-react-navigation';
 export default (props) => {
-	const isTabletOrMobileDevice = useMediaQuery({
+	const [isTabletOrMobileDevice, setIsTabletOrMobileDevice] = useState(false);
+	useEffect(() => {
+		setIsTabletOrMobileDevice(itMob);
+	}, []);
+	const itMob = useMediaQuery({
 		maxDeviceWidth: 768,
 	});
 	return (

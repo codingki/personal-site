@@ -1,6 +1,5 @@
-import '@expo/match-media';
 import { useMediaQuery } from 'react-responsive';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import Wrapper from '../../../components/global/Wrapper';
 import Button from '../../../components/button/Button';
@@ -9,7 +8,11 @@ import WorkCard from '../../card/WorkCard';
 import WideWorkCard from '../../card/WideWorkCard';
 
 export default (props) => {
-	const isTabletOrMobileDevice = useMediaQuery({
+	const [isTabletOrMobileDevice, setIsTabletOrMobileDevice] = useState(false);
+	useEffect(() => {
+		setIsTabletOrMobileDevice(itMob);
+	}, []);
+	const itMob = useMediaQuery({
 		maxDeviceWidth: 768,
 	});
 	return (

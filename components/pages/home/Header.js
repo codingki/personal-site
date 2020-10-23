@@ -1,13 +1,16 @@
-import '@expo/match-media';
 import { useMediaQuery } from 'react-responsive';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Dimensions, Image } from 'react-native';
 import Text from '../../utils/StyledText';
 import Colors from '../../../constants/Colors';
 import Wrapper from '../../global/Wrapper';
 import Button from '../../button/Button';
 export default () => {
-	const isTabletOrMobileDevice = useMediaQuery({
+	const [isTabletOrMobileDevice, setIsTabletOrMobileDevice] = useState(false);
+	useEffect(() => {
+		setIsTabletOrMobileDevice(itMob);
+	}, []);
+	const itMob = useMediaQuery({
 		maxDeviceWidth: 768,
 	});
 	return (
@@ -50,7 +53,7 @@ export default () => {
 
 						<iframe
 							src="https://ghbtns.com/github-btn.html?user=codingki&repo=personal-site&type=star&count=true&size=large"
-							frameborder="0"
+							frameBorder="0"
 							scrolling="0"
 							width="170"
 							height="30"

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '@expo/match-media';
 import { useMediaQuery } from 'react-responsive';
 import { View, Image } from 'react-native';
@@ -15,7 +15,11 @@ import Head from 'next/head';
 export default function App({ postData }) {
 	const tags = postData.category.split(', ');
 	const tech = postData.technology.split(', ');
-	const isTabletOrMobileDevice = useMediaQuery({
+	const [isTabletOrMobileDevice, setIsTabletOrMobileDevice] = useState(false);
+	useEffect(() => {
+		setIsTabletOrMobileDevice(itMob);
+	}, []);
+	const itMob = useMediaQuery({
 		maxDeviceWidth: 768,
 	});
 	return (

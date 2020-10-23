@@ -17,7 +17,11 @@ import {
 } from '@expo-google-fonts/montserrat';
 
 export default function App(props) {
-	const isTabletOrMobileDevice = useMediaQuery({
+	const [isTabletOrMobileDevice, setIsTabletOrMobileDevice] = useState(false);
+	useEffect(() => {
+		setIsTabletOrMobileDevice(itMob);
+	}, []);
+	const itMob = useMediaQuery({
 		maxDeviceWidth: 768,
 	});
 
@@ -36,8 +40,7 @@ export default function App(props) {
 				) : (
 					<TopNav active={props.page} navigation={props.navigation} />
 				)}
-
-				{props.children}
+				<View>{props.children}</View>
 			</View>
 			{isTabletOrMobileDevice ? <MobileFooter /> : <Footer />}
 		</>
