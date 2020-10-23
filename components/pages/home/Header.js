@@ -47,8 +47,8 @@ export default () => {
 								lineHeight: 24,
 							}}
 						>
-							Im a guy that can code and lil bit design, but internet makes me
-							can do anything.
+							Im a guy that can code and design, but internet makes me can do
+							anything. Crafting apps with React Native and ❤️
 						</Text>
 
 						<iframe
