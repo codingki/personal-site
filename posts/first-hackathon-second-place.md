@@ -19,6 +19,6 @@ We have an idea, what if online ticket concert can be bought seperately(ketengan
 
 So we decided to take that idea to development and going through some mentoring session until the product was done. Then on 17 Oct the winner announced, we got 2nd place!
 
-Full read and some development process (on Indonesian) : https://twitter.com/kikiding/status/1317693560372695043
+Full read and some development process (in Indonesian) on my twitter
 
 Source code : https://github.com/codingki/TikTeng
