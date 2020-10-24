@@ -24,7 +24,7 @@ export default function App({ allPostsData, allWorksData }) {
 	return (
 		<>
 			<Head>
-				<title>Welcome to my site</title>
+				<title>Nur Fikri | React native developer</title>
 				<meta
 					property="og:image"
 					content={`https://images.bannerbear.com/requests/images/000/284/819/original/b5a817a4a421acfec7b14738c169931d9621431d.png?1602045540`}
