@@ -6,7 +6,7 @@ excerpt: 'Color sense is a game that will test your color sensitivity.'
 image: 'https://i.ibb.co/jgJHYVj/feature.png'
 technology: 'React Native, Expo'
 android: 'https://play.google.com/store/apps/details?id=com.essence.colorsense'
-web: 'https://color-sense.netlify.app/'
+web: 'https://color-sense.kikiding.space/'
 expo: 'https://expo.io/@kidingki/projects/sehatnegeriku'
 ---
 
