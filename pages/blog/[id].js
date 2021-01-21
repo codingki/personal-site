@@ -5,13 +5,25 @@ import Colors from '../../constants/Colors';
 import Layout from '../../components/global/Layout';
 import Wrapper from '../../components/global/Wrapper';
 import Button from '../../components/button/Tag';
-import HTML from 'react-native-render-html';
+import htmr from 'htmr';
 import { Ionicons } from '@expo/vector-icons';
 import { getAllPostIds, getPostData } from '../../lib/posts';
 import Head from 'next/head';
 var moment = require('moment');
 export default function App({ postData }) {
 	const tags = postData.category.split(', ');
+	function HTMLComponent() {
+		const options = {
+			transform: {
+				p: `fontSize: 16;
+			lineHeight: 24;
+			fontFamily: 'Montserrat';`,
+			},
+			preserveAttributes: [],
+			dangerouslySetChildren: ['style'],
+		};
+		return htmr(postData.contentHtml, options);
+	}
 	return (
 		<>
 			<Head>
@@ -76,7 +88,8 @@ export default function App({ postData }) {
 						</View>
 
 						<View style={{ padding: 20, paddingVertical: 10 }}>
-							<HTML
+							{HTMLComponent()}
+							{/* <HTML
 								textSelectable
 								html={postData.contentHtml}
 								baseFontStyle={{
@@ -87,7 +100,7 @@ export default function App({ postData }) {
 								tagsStyles={{
 									img: { width: 600 },
 								}}
-							/>
+							/> */}
 						</View>
 						<View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
 							<a

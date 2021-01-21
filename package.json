@@ -21,6 +21,7 @@
 		"expo-status-bar": "~1.0.2",
 		"graphql-hooks": "^5.0.0",
 		"gray-matter": "^4.0.2",
+		"htmr": "^0.9.2",
 		"moment": "^2.29.1",
 		"next": "^9.5.3",
 		"next-compose-plugins": "^2.2.0",

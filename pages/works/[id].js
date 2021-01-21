@@ -8,7 +8,7 @@ import Layout from '../../components/global/Layout';
 import Wrapper from '../../components/global/Wrapper';
 import Button from '../../components/button/Tag';
 import Button2 from '../../components/button/MobileButton';
-import HTML from 'react-native-render-html';
+import htmr from 'htmr';
 import { Ionicons } from '@expo/vector-icons';
 import { getAllWorksIds, getWorksData } from '../../lib/works';
 import Head from 'next/head';
@@ -22,6 +22,18 @@ export default function App({ postData }) {
 	const itMob = useMediaQuery({
 		maxDeviceWidth: 768,
 	});
+	function HTMLComponent() {
+		const options = {
+			transform: {
+				p: `fontSize: 16;
+			lineHeight: 24;
+			fontFamily: 'Montserrat';`,
+			},
+			preserveAttributes: [],
+			dangerouslySetChildren: ['style'],
+		};
+		return htmr(postData.contentHtml, options);
+	}
 	return (
 		<>
 			<Head>
@@ -112,22 +124,7 @@ export default function App({ postData }) {
 							<Text medium style={{ fontSize: 20 }}>
 								About the project :
 							</Text>
-							<HTML
-								textSelectable
-								html={postData.contentHtml}
-								baseFontStyle={{
-									fontSize: 16,
-									lineHeight: 24,
-									fontFamily: 'Montserrat',
-								}}
-								tagsStyles={{
-									img: { width: isTabletOrMobileDevice ? 250 : 600 },
-									a: { width: 400 },
-								}}
-								onLinkPress={(e, href) => {
-									window.open(href);
-								}}
-							/>
+							{HTMLComponent()}
 							<Text medium style={{ fontSize: 20 }}>
 								Technology used :
 							</Text>
