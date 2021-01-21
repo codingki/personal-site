@@ -27,15 +27,11 @@ export default function App({ postData }) {
 		lineheight: 24;
 		fontfamily: 'Montserrat';
 	`;
+	const transform = {
+		p: Paragraph,
+	};
 	function HTMLComponent() {
-		const options = {
-			transform: {
-				p: Paragraph,
-			},
-			preserveAttributes: [],
-			dangerouslySetChildren: ['style'],
-		};
-		return htmr(postData.contentHtml, options);
+		return htmr(postData.contentHtml, { transform });
 	}
 	return (
 		<>
