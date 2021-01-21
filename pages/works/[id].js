@@ -23,9 +23,9 @@ export default function App({ postData }) {
 		maxDeviceWidth: 768,
 	});
 	const Paragraph = styled.p`
-		fontsize: 16;
-		lineheight: 24;
-		fontfamily: 'Montserrat';
+		font-size: 16;
+		line-height: 24;
+		font-family: 'Montserrat';
 	`;
 	const transform = {
 		p: Paragraph,

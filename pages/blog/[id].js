@@ -14,9 +14,9 @@ var moment = require('moment');
 export default function App({ postData }) {
 	const tags = postData.category.split(', ');
 	const Paragraph = styled.p`
-		fontsize: 16;
-		lineheight: 24;
-		fontfamily: 'Montserrat';
+		font-size: 16;
+		line-height: 24;
+		font-family: 'Montserrat';
 	`;
 	const transform = {
 		p: Paragraph,
