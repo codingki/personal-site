@@ -7,7 +7,7 @@ import Colors from '../../constants/Colors';
 import Layout from '../../components/global/Layout';
 import Wrapper from '../../components/global/Wrapper';
 import Button from '../../components/button/Tag';
-import Button2 from '../../components/button/MobileButton';
+import styled from 'styled-components';
 import htmr from 'htmr';
 import { Ionicons } from '@expo/vector-icons';
 import { getAllWorksIds, getWorksData } from '../../lib/works';
@@ -22,12 +22,15 @@ export default function App({ postData }) {
 	const itMob = useMediaQuery({
 		maxDeviceWidth: 768,
 	});
+	const Paragraph = styled.p`
+		fontsize: 16;
+		lineheight: 24;
+		fontfamily: 'Montserrat';
+	`;
 	function HTMLComponent() {
 		const options = {
 			transform: {
-				p: `fontSize: 16;
-			lineHeight: 24;
-			fontFamily: 'Montserrat';`,
+				p: Paragraph,
 			},
 			preserveAttributes: [],
 			dangerouslySetChildren: ['style'],

@@ -6,18 +6,22 @@ import Layout from '../../components/global/Layout';
 import Wrapper from '../../components/global/Wrapper';
 import Button from '../../components/button/Tag';
 import htmr from 'htmr';
+import styled from 'styled-components';
 import { Ionicons } from '@expo/vector-icons';
 import { getAllPostIds, getPostData } from '../../lib/posts';
 import Head from 'next/head';
 var moment = require('moment');
 export default function App({ postData }) {
 	const tags = postData.category.split(', ');
+	const Paragraph = styled.p`
+		fontsize: 16;
+		lineheight: 24;
+		fontfamily: 'Montserrat';
+	`;
 	function HTMLComponent() {
 		const options = {
 			transform: {
-				p: `fontSize: 16;
-			lineHeight: 24;
-			fontFamily: 'Montserrat';`,
+				p: Paragraph,
 			},
 			preserveAttributes: [],
 			dangerouslySetChildren: ['style'],
