@@ -24,7 +24,6 @@ export default function App({ postData }) {
 	});
 	const Paragraph = styled.p`
 		font-size: 16;
-		line-height: 24;
 		font-family: 'Montserrat';
 	`;
 	const transform = {

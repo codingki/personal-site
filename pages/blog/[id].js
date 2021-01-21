@@ -15,7 +15,6 @@ export default function App({ postData }) {
 	const tags = postData.category.split(', ');
 	const Paragraph = styled.p`
 		font-size: 16;
-		line-height: 24;
 		font-family: 'Montserrat';
 	`;
 	const transform = {
