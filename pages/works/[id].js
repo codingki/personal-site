@@ -189,6 +189,20 @@ export default function App({ postData }) {
 										<Button text="Expo" blue />
 									</a>
 								)}
+								{postData.github && (
+									<a
+										style={{ textDecoration: 'none' }}
+										href={postData.github}
+										target="_blank"
+									>
+										<Button text="Github" blue />
+									</a>
+								)}
+								{postData.github &&
+									postData.expo &&
+									postData.ios &&
+									postData.android &&
+									postData.web && <>-</>}
 							</View>
 							{/* <div
 								style={{ fontFamily: 'Montserrat', lineHeight: 1.8 }}
