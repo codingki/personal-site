@@ -25,11 +25,11 @@ export default function Home({ data }) {
 					content="Im a guy that can code and design, but internet makes me can do
 								anything. Crafting beautiful apps with React and ❤️"
 				/>
-				<meta property="og:title" content={blog.title} />
 				<meta
-					property="og:url"
-					content={`https://kikiding.space/blog/${blog.slug}`}
+					property="og:title"
+					content="Nur Fikri | React Native Developer"
 				/>
+				<meta property="og:url" content={`https://kikiding.space/`} />
 				<meta
 					property="og:image"
 					content={`https://kikiding.space/api/social-image?title=Hi, I am Kiki&description=Im a guy that can code and design, but internet makes me can do
