@@ -1,4 +1,3 @@
-import Link from 'next/link';
 export default function Button(props) {
 	const slug = props.slug;
 	function color() {
@@ -14,12 +13,8 @@ export default function Button(props) {
 	}
 
 	return (
-		<Link as={`/${slug}`} href={slug == '' ? '/' : `/${slug}`}>
-			<a>
-				<div className={color()}>
-					<p className=" font-bold text-lg text-center">{props.text}</p>
-				</div>
-			</a>
-		</Link>
+		<div className={color()}>
+			<p className=" font-bold text-lg text-center">{props.text}</p>
+		</div>
 	);
 }
