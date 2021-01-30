@@ -1,9 +1,9 @@
 import Head from 'next/head';
-import NavBar from './components/global/NavBar';
+import NavBar from '../components/global/NavBar';
 import Image from 'next/image';
-import Button from './components/Button';
-import Icon from './components/IconButton';
-import Footer from './components/global/Footer';
+import Button from '../components/Button';
+import Icon from '../components/IconButton';
+import Footer from '../components/global/Footer';
 import moment from 'moment';
 import { getHome } from './api/fetch';
 import Link from 'next/link';

@@ -1,15 +1,15 @@
 import Head from 'next/head';
-import NavBar from '../components/global/NavBar';
+import NavBar from '../../components/global/NavBar';
 import Image from 'next/image';
-import Button from '../components/Button';
-import Icon from '../components/IconButton';
-import Footer from '../components/global/Footer';
+import Button from '../../components/Button';
+import Icon from '../../components/IconButton';
+import Footer from '../../components/global/Footer';
 import markdownToHtml from '../api/mdToHtml';
 import moment from 'moment';
 import markdownStyles from '../../styles/markdown-styles.module.css';
 import { getWorkPost, getWork } from '../api/fetch';
 
-export default function SingleWorks({ data, content }) {
+function SingleWorks({ data, content }) {
 	const work = data.work;
 	const cat = data.work.categories.split(', ');
 	const tech = data.work.technologyUsed.split(', ');
@@ -154,3 +154,4 @@ export async function getStaticPaths() {
 		fallback: true,
 	};
 }
+export default SingleWorks;

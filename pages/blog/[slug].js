@@ -1,14 +1,14 @@
 import Head from 'next/head';
-import NavBar from '../components/global/NavBar';
+import NavBar from '../../components/global/NavBar';
 import Image from 'next/image';
-import Button from '../components/Button';
-import Icon from '../components/IconButton';
-import Footer from '../components/global/Footer';
+import Button from '../../components/Button';
+import Icon from '../../components/IconButton';
+import Footer from '../../components/global/Footer';
 import markdownToHtml from '../api/mdToHtml';
 import moment from 'moment';
 import markdownStyles from '../../styles/markdown-styles.module.css';
 import { getPost, getBlog } from '../api/fetch';
-export default function SingleBlog({ data, content }) {
+function SingleBlog({ data, content }) {
 	const blog = data.blog;
 
 	return (
@@ -121,3 +121,4 @@ export async function getStaticPaths() {
 		fallback: true,
 	};
 }
+export default SingleBlog;
