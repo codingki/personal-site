@@ -8,7 +8,7 @@ import markdownToHtml from '../api/mdToHtml';
 import moment from 'moment';
 import markdownStyles from '../../styles/markdown-styles.module.css';
 import { getPost, getBlog } from '../api/fetch';
-export default function Blog({ data, content }) {
+export default function SingleBlog({ data, content }) {
 	const blog = data.blog;
 
 	return (

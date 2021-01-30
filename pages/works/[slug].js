@@ -9,7 +9,7 @@ import moment from 'moment';
 import markdownStyles from '../../styles/markdown-styles.module.css';
 import { getWorkPost, getWork } from '../api/fetch';
 
-export default function Works({ data, content }) {
+export default function SingleWorks({ data, content }) {
 	const work = data.work;
 	const cat = data.work.categories.split(', ');
 	const tech = data.work.technologyUsed.split(', ');

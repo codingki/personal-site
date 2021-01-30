@@ -7,7 +7,7 @@ import Footer from './components/global/Footer';
 import moment from 'moment';
 import Link from 'next/link';
 import { getBlog } from './api/fetch';
-export default function Works({ data }) {
+export default function Blog({ data }) {
 	const blogs = data.allBlogs;
 	return (
 		<div>
