@@ -65,8 +65,8 @@ export default function Works({ data }) {
 											{item.excerpt}
 										</p>
 										<div className="flex-row flex flex-wrap mt-2 gap-2">
-											{cat.map((item) => (
-												<Button text={item} color="orange" />
+											{cat.map((item, index) => (
+												<Button key={index} text={item} color="orange" />
 											))}
 										</div>
 									</div>

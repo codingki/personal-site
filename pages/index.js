@@ -139,11 +139,14 @@ export default function Home({ data }) {
 			</div>
 			<div className=" bg-myYellow items-center  pt-0 pb-20">
 				<div className="container max-w-screen-md  mx-auto  flex-col gap-4 flex justify-between md:px-0 px-5">
-					{works.map((item) => {
+					{works.map((item, index) => {
 						const cat = item.categories.split(', ');
 
 						return (
-							<div className=" flex-1 flex-row flex duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100">
+							<div
+								key={index}
+								className=" flex-1 flex-row flex duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100"
+							>
 								<div className="bg-white border-2 border-b-8 border-black p-5 rounded-xl flex-1">
 									<Link
 										key={item.id}
@@ -160,8 +163,8 @@ export default function Home({ data }) {
 										{item.excerpt}
 									</p>
 									<div className="flex-row flex flex-wrap mt-2 gap-2">
-										{cat.map((item) => (
-											<Button text={item} color="orange" />
+										{cat.map((item, index) => (
+											<Button key={index} text={item} color="orange" />
 										))}
 									</div>
 								</div>
