@@ -45,13 +45,13 @@ export default function SingleWorks({ data, content }) {
 				/>
 				<meta
 					property="og:image"
-					content={`https://kikiding.space/api/social-image?title=${work.title}&description=${work.description}&path=https://kikiding.space/works/${work.slug}`}
+					content={`https://kikiding.space/api/social-image?title=${work.title}&description=${work.excerpt}&path=https://kikiding.space/works/${work.slug}`}
 				/>
 				<meta name="twitter:card" content="summary_large_image" />
 				<meta name="twitter:title" content={work.title} />
 				<meta
 					name="twitter:image"
-					content={`https://kikiding.space/api/social-image?title=${work.title}&description=${work.description}&path=https://kikiding.space/works/${work.slug}`}
+					content={`https://kikiding.space/api/social-image?title=${work.title}&description=${work.excerpt}&path=https://kikiding.space/works/${work.slug}`}
 				/>
 				<meta
 					name="twitter:domain"
