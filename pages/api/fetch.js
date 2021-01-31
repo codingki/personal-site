@@ -24,7 +24,7 @@ async function fetchAPI(query) {
 export async function getHome() {
 	const data = fetchAPI(`
     query MyQuery {
-        allBlogs(orderBy: date_DESC, first: "3") {
+        allBlogs(orderBy: date_DESC, first: "2") {
           title
           id
           excerpt
