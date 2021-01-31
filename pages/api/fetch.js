@@ -23,7 +23,7 @@ async function fetchAPI(query) {
 
 export async function getHome() {
 	const data = fetchAPI(`
-    query MyQuery {
+    query HomeQuery {
         allBlogs(orderBy: date_DESC, first: "2") {
           title
           id
@@ -48,7 +48,7 @@ export async function getHome() {
 
 export async function getBlog() {
 	const data = fetchAPI(`
-    query MyQuery {
+    query AllBlog {
         allBlogs(orderBy: date_DESC ) {
           title
           id
@@ -66,7 +66,7 @@ export async function getBlog() {
 
 export async function getWork() {
 	const data = fetchAPI(`
-    query MyQuery {
+    query Allwork {
         
         allWorks(orderBy: date_DESC) {
           title
@@ -84,9 +84,8 @@ export async function getWork() {
 
 export async function getPost(slug) {
 	const data = await fetchAPI(
-		`
-    query PostBySlug($slug: String) {
-      blog(filter: {slug: {eq: $slug}}) {
+		`query SingleBlog{
+      blog(filter: {slug: {eq: "${slug}"}}) {
           title
           id
           excerpt
@@ -98,21 +97,15 @@ export async function getPost(slug) {
             url
           }
       }
-    }`,
-		{
-			variables: {
-				slug,
-			},
-		}
+    }`
 	);
 	return data;
 }
 
 export async function getWorkPost(slug) {
 	const data = await fetchAPI(
-		`
-    query WorkBySlug($slug: String) {
-      work(filter: {slug: {eq: $slug}}) {
+		`query SingleWork {
+      work(filter: {slug: {eq: "${slug}"}}) {
         date
         id
         excerpt
@@ -126,12 +119,7 @@ export async function getWorkPost(slug) {
           url
         }
       }
-    }`,
-		{
-			variables: {
-				slug,
-			},
-		}
+    }`
 	);
 	return data;
 }

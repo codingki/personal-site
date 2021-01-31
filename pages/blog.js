@@ -39,12 +39,12 @@ export default function Blog({ data }) {
 				<NavBar page="Blog" />
 
 				<div className=" bg-myYellow items-center  py-5 mt-5">
-					<div className="container max-w-screen-md  mx-auto flex-row flex justify-between md:px-0 px-5">
+					<div className="container max-w-screen-md  mx-auto flex-row flex justify-between md:px-0 px-4">
 						<Button text="All Posts" color="blue" />
 					</div>
 				</div>
 				<div className=" bg-myYellow items-center  pt-0 pb-5">
-					<div className="container max-w-screen-md  mx-auto flex-col gap-5 flex justify-between md:px-0 px-5">
+					<div className="container max-w-screen-md  mx-auto flex-col gap-5 flex justify-between md:px-0 px-4">
 						{blogs.map((item) => (
 							<div
 								className="bg-white border-2 border-b-8 border-black p-5 rounded-xl flex-1 duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100"

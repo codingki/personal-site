@@ -3,7 +3,7 @@ import Button from '../NavBarButton';
 export default function NavBar(props) {
 	return (
 		<div className=" bg-myOrange items-center border-b-2 border-black py-5">
-			<div className="container max-w-screen-md  mx-auto md:flex-row flex-col gap-2 md:gap-0 flex justify-between md:px-0 px-5">
+			<div className="container max-w-screen-md  mx-auto md:flex-row flex-col md:gap-2 gap-3 flex justify-between md:px-0 px-4">
 				<div>
 					<Link as={`/`} href="/">
 						<a>
@@ -16,7 +16,7 @@ export default function NavBar(props) {
 					</Link>
 				</div>
 
-				<div className="flex md:flex-row flex-col gap-2">
+				<div className="flex md:flex-row flex-col md:gap-2 gap-3">
 					<Link as={`/blog`} href="/works">
 						<a>
 							<Button

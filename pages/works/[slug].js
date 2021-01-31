@@ -61,12 +61,12 @@ export default function SingleWorks({ data, content }) {
 			<div className="bg-myYellow min-h-screen flex flex-col justify-between">
 				<NavBar page="Works" />
 
-				<div className=" bg-myYellow items-center  py-5 m-5 md:px-0 px-5">
+				<div className=" bg-myYellow items-center  py-5 my-5 md:px-0 px-4 ">
 					<div className="container max-w-screen-md bg-white border-2 border-b-8 border-black rounded-xl  mx-auto flex-col flex justify-between overflow-hidden">
 						{work.image && (
 							<img src={work.image.url} className="border-b-4 border-black" />
 						)}
-						<div className="p-6">
+						<div className="md:py-6 md:px-6 py-6 px-4 ">
 							<h1 className="text-4xl font-bold">{work.title}</h1>
 							<div className="flex-row flex flex-wrap mt-4 gap-2">
 								{cat.map((item, index) => (

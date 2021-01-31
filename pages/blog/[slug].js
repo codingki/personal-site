@@ -9,9 +9,25 @@ import moment from 'moment';
 import markdownStyles from '../../styles/markdown-styles.module.css';
 import { getPost, getBlog } from '../api/fetch';
 
+export async function getStaticPaths() {
+	const allBlogs = await getBlog();
+	const allPosts = allBlogs.allBlogs;
+	return {
+		paths: allPosts.map((post) => `/blog/${post.slug}`) || [],
+		fallback: false,
+	};
+}
+export async function getStaticProps({ params }) {
+	const data = await getPost(params.slug);
+
+	const content = await markdownToHtml(data.blog.content || '');
+
+	return {
+		props: { data, content },
+	};
+}
 export default function SingleBlog({ data, content }) {
 	const blog = data.blog;
-
 	return (
 		<div>
 			<Head>
@@ -57,12 +73,12 @@ export default function SingleBlog({ data, content }) {
 			<div className="bg-myYellow min-h-screen flex flex-col justify-between">
 				<NavBar page="Blog" />
 
-				<div className=" bg-myYellow items-center  py-5 mt-5 md:px-0 px-5">
+				<div className=" bg-myYellow items-center  py-5 my-5 md:px-0 px-4">
 					<div className="container max-w-screen-md bg-white border-2 border-b-8 border-black rounded-xl  mx-auto flex-col flex justify-between overflow-hidden">
 						{blog.image && (
 							<img src={blog.image.url} className="border-b-4 border-black" />
 						)}
-						<div className="p-6">
+						<div className="md:py-6 md:px-6 py-6 px-4 ">
 							<h1 className="text-4xl font-bold">{blog.title}</h1>
 							<p className="text-lg font-semibold mt-2">
 								{blog.categories} | {moment(blog.date).format('DD MMM YYYY')}
@@ -99,24 +115,4 @@ export default function SingleBlog({ data, content }) {
 			</div>
 		</div>
 	);
-}
-export async function getStaticPaths() {
-	const allBlogs = await getBlog();
-	const allPosts = allBlogs.allBlogs;
-	return {
-		paths: allPosts.map((post) => `/blog/${post.slug}`) || [],
-		fallback: false,
-	};
-}
-export async function getStaticProps({ params }) {
-	const data = await getPost(params.slug);
-	const content = await markdownToHtml(data.blog.content || '');
-	if (!data) {
-		return {
-			notFound: true,
-		};
-	}
-	return {
-		props: { data, content },
-	};
 }

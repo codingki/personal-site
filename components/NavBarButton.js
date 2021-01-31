@@ -14,7 +14,7 @@ export default function Button(props) {
 
 	return (
 		<div className={color()}>
-			<p className=" font-bold text-lg text-center">{props.text}</p>
+			<p className="font-bold md:text-lg text-md text-center">{props.text}</p>
 		</div>
 	);
 }
