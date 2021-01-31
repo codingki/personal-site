@@ -9,7 +9,7 @@ import moment from 'moment';
 import markdownStyles from '../../styles/markdown-styles.module.css';
 import { getWorkPost, getWork } from '../api/fetch';
 
-function SingleWorks({ data, content }) {
+export default function SingleWorks({ data, content }) {
 	const work = data.work;
 	const cat = data.work.categories.split(', ');
 	const tech = data.work.technologyUsed.split(', ');
@@ -69,8 +69,8 @@ function SingleWorks({ data, content }) {
 						<div className="p-6">
 							<h1 className="text-4xl font-bold">{work.title}</h1>
 							<div className="flex-row flex flex-wrap mt-4 gap-2">
-								{cat.map((item) => (
-									<Button text={item} color="orange" />
+								{cat.map((item, index) => (
+									<Button key={index} text={item} color="orange" />
 								))}
 							</div>
 							<p className="text-xl mt-4 leading-relaxed font-semibold">
@@ -82,7 +82,7 @@ function SingleWorks({ data, content }) {
 							/>
 
 							<p className="text-xl mt-4 leading-relaxed font-semibold">
-								Technology used
+								Technology used :
 							</p>
 							<div className="flex-row flex flex-wrap mt-2 gap-2">
 								{tech.map((item, index) => (
@@ -90,7 +90,7 @@ function SingleWorks({ data, content }) {
 								))}
 							</div>
 							<p className="text-xl mt-4 leading-relaxed font-semibold">
-								Deployment
+								Links :
 							</p>
 							<div className="flex-row flex flex-wrap mt-2 gap-2">
 								{deployment.map((item, index) => {
@@ -131,6 +131,14 @@ function SingleWorks({ data, content }) {
 		</div>
 	);
 }
+export async function getStaticPaths() {
+	const allBlogs = await getWork();
+	const allPosts = allBlogs.allWorks;
+	return {
+		paths: allPosts.map((post) => `/works/${post.slug}`) || [],
+		fallback: false,
+	};
+}
 export async function getStaticProps({ params }) {
 	const data = await getWorkPost(params.slug);
 	const content = await markdownToHtml(data.work.about || '');
@@ -140,18 +148,6 @@ export async function getStaticProps({ params }) {
 		};
 	}
 	return {
-		props: {
-			data,
-			content,
-		},
+		props: { data, content },
 	};
 }
-export async function getStaticPaths() {
-	const allBlogs = await getWork();
-	const allPosts = allBlogs.allWorks;
-	return {
-		paths: allPosts.map((post) => `/works/${post.slug}`) || [],
-		fallback: true,
-	};
-}
-export default SingleWorks;

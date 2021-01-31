@@ -8,7 +8,8 @@ import markdownToHtml from '../api/mdToHtml';
 import moment from 'moment';
 import markdownStyles from '../../styles/markdown-styles.module.css';
 import { getPost, getBlog } from '../api/fetch';
-function SingleBlog({ data, content }) {
+
+export default function SingleBlog({ data, content }) {
 	const blog = data.blog;
 
 	return (
@@ -98,6 +99,14 @@ function SingleBlog({ data, content }) {
 		</div>
 	);
 }
+export async function getStaticPaths() {
+	const allBlogs = await getBlog();
+	const allPosts = allBlogs.allBlogs;
+	return {
+		paths: allPosts.map((post) => `/blog/${post.slug}`) || [],
+		fallback: false,
+	};
+}
 export async function getStaticProps({ params }) {
 	const data = await getPost(params.slug);
 	const content = await markdownToHtml(data.blog.content || '');
@@ -107,18 +116,6 @@ export async function getStaticProps({ params }) {
 		};
 	}
 	return {
-		props: {
-			data,
-			content,
-		},
+		props: { data, content },
 	};
 }
-export async function getStaticPaths() {
-	const allBlogs = await getBlog();
-	const allPosts = allBlogs.allBlogs;
-	return {
-		paths: allPosts.map((post) => `/blog/${post.slug}`) || [],
-		fallback: true,
-	};
-}
-export default SingleBlog;
