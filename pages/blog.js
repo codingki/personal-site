@@ -32,7 +32,7 @@ export default function Blog({ data }) {
 				<meta property="og:url" content={`https://kikiding.space/blog`} />
 				<meta
 					property="og:image"
-					content={`https://kikiding.space/api/social-image?title=My blog&description=A place to share something maybe useful&path=https://kikiding.space/blog/`}
+					content={`https://kikiding.space/api/social-image?title=My blog&description=A%20place%20to%20share%20something%20maybe%20useful&path=https://kikiding.space/blog/`}
 				/>
 			</Head>
 			<div className="bg-myYellow min-h-screen">

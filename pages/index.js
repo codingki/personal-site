@@ -37,8 +37,7 @@ export default function Home({ data }) {
 				<meta property="og:url" content={`https://kikiding.space/`} />
 				<meta
 					property="og:image"
-					content={`https://kikiding.space/api/social-image?title=Hi, I am Kiki&description=Im a guy that can code and design, but internet makes me can do
-					anything. Crafting beautiful apps with React&path=https://kikiding.space/`}
+					content={`https://kikiding.space/api/social-image?title=Hi,%20I%20am%20Kiki&description=Im%20a%20guy%20that%20can%20code%20and%20design,%20but%20internet%20makes%20me%20can%20do%20anything.%20Crafting%20beautiful%20apps%20with%20React&path=https://kikiding.space/`}
 				/>
 			</Head>
 

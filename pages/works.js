@@ -28,7 +28,7 @@ export default function Works({ data }) {
 				<meta property="og:url" content={`https://kikiding.space/works`} />
 				<meta
 					property="og:image"
-					content={`https://kikiding.space/api/social-image?title=My Works&description=Projects by me&path=https://kikiding.space/works/`}
+					content={`https://kikiding.space/api/social-image?title=My Works&description=Projects%20by%20me&path=https://kikiding.space/works/`}
 				/>
 			</Head>
 			<div className="bg-myYellow min-h-screen">
