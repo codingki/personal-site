@@ -54,7 +54,7 @@ export default function SingleBlog({ data, content }) {
 					content={`https://kikiding.space/blog/${blog.slug}`}
 				/>
 			</Head>
-			<div className="bg-myYellow min-h-screen pb-5">
+			<div className="bg-myYellow min-h-screen flex flex-col justify-between">
 				<NavBar page="Blog" />
 
 				<div className=" bg-myYellow items-center  py-5 mt-5 md:px-0 px-5">
@@ -94,8 +94,9 @@ export default function SingleBlog({ data, content }) {
 						</div>
 					</div>
 				</div>
+
+				<Footer />
 			</div>
-			<Footer />
 		</div>
 	);
 }

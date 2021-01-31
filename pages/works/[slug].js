@@ -58,10 +58,10 @@ export default function SingleWorks({ data, content }) {
 					content={`https://kikiding.space/works/${work.slug}`}
 				/>
 			</Head>
-			<div className="bg-myYellow min-h-screen pb-5">
+			<div className="bg-myYellow min-h-screen flex flex-col justify-between">
 				<NavBar page="Works" />
 
-				<div className=" bg-myYellow items-center  py-5 mt-5 md:px-0 px-5">
+				<div className=" bg-myYellow items-center  py-5 m-5 md:px-0 px-5">
 					<div className="container max-w-screen-md bg-white border-2 border-b-8 border-black rounded-xl  mx-auto flex-col flex justify-between overflow-hidden">
 						{work.image && (
 							<img src={work.image.url} className="border-b-4 border-black" />
@@ -126,8 +126,9 @@ export default function SingleWorks({ data, content }) {
 						</div>
 					</div>
 				</div>
+
+				<Footer />
 			</div>
-			<Footer />
 		</div>
 	);
 }
