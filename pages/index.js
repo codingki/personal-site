@@ -24,7 +24,7 @@ export default function Home({ data }) {
 					rel="stylesheet"
 				/>
 				<link rel="icon" href="/favicon.png" />
-				<title>Nur Fikri | React Native Developer</title>
+				<title>Nur Fikri | Front-end Developer</title>
 				<meta
 					name="description"
 					content="Im a guy that can code and design, but internet makes me can do
