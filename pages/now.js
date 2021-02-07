@@ -35,13 +35,13 @@ export default function SingleBlog({ data, content }) {
 				<meta property="og:url" content={`https://kikiding.space/now`} />
 				<meta
 					property="og:image"
-					content={`https://kikiding.space/api/social-image?title=Now&description=kikiding current status&path=https://kikiding.space/now`}
+					content={`https://kikiding.space/api/social-image?title=Now&description=Current status&path=https://kikiding.space/now`}
 				/>
 				<meta name="twitter:card" content="summary_large_image" />
 				<meta name="twitter:title" content="Now" />
 				<meta
 					name="twitter:image"
-					content={`https://kikiding.space/api/social-image?title=Now&description=kikiding current status&path=https://kikiding.space/now`}
+					content={`https://kikiding.space/api/social-image?title=Now&description=Current status&path=https://kikiding.space/now`}
 				/>
 				<meta name="twitter:domain" content={`https://kikiding.space/now`} />
 			</Head>
