@@ -52,15 +52,13 @@ export default function Home({ data }) {
 								Im a guy that can code and design, but internet makes me can do
 								anything. Crafting beautiful apps with React and ❤️
 							</p>
-							<iframe
-								className="mt-4"
-								src="https://ghbtns.com/github-btn.html?user=codingki&repo=personal-site&type=star&count=true&size=large"
-								frameBorder="0"
-								scrolling="0"
-								width="170"
-								height="30"
-								title="GitHub"
-							></iframe>
+							<div className="flex mt-4">
+								<Link as={`/now`} href="/now">
+									<a>
+										<Button text="About me" color="orange" />
+									</a>
+								</Link>
+							</div>
 						</div>
 						<div className="col-span-4 m-auto hidden md:inline mt-10 ">
 							<img className="" src="/me.png" />

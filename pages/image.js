@@ -8,12 +8,8 @@ export default function socialImages({ title, description, path }) {
 				<div className="col-span-12 md:col-span-8 sm:py-10 sm:px-8 p-5 my-auto ">
 					<p className="font-bold text-4xl  text-black">{title}</p>
 
-					<p className="font-normal sm:text-xl text-md text-black mt-2">
-						{description}
-					</p>
-					<p className="font-normal sm:text-xl text-md text-black mt-4">
-						{path}
-					</p>
+					<p className="font-normal text-xl text-black mt-2">{description}</p>
+					<p className="font-normal text-lg text-black mt-4">{path}</p>
 				</div>
 				<div className="col-span-4 m-auto hidden md:inline mt-10 ">
 					<img className="" src="/me.png" />

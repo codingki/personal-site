@@ -123,3 +123,15 @@ export async function getWorkPost(slug) {
 	);
 	return data;
 }
+
+export async function getNow() {
+	const data = await fetchAPI(
+		`query MyQuery {
+      now {
+        content
+        updatedAt
+      }
+    }`
+	);
+	return data;
+}
