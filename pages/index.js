@@ -60,7 +60,7 @@ export default function Home({ data }) {
 								</Link>
 							</div>
 						</div>
-						<div className="col-span-4 m-auto hidden md:inline mt-10 ">
+						<div className="col-span-4 m-auto hidden md:inline mt-12 ">
 							<img className="" src="/me.png" />
 						</div>
 					</div>
