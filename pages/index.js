@@ -177,7 +177,7 @@ export default function Home({ data }) {
 		</div>
 	);
 }
-export async function getServerSideProps() {
+export async function getStaticProps() {
 	const data = (await getHome()) || [];
 
 	return {

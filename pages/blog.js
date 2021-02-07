@@ -72,7 +72,7 @@ export default function Blog({ data }) {
 		</div>
 	);
 }
-export async function getServerSideProps() {
+export async function getStaticProps() {
 	const data = (await getBlog()) || [];
 
 	return {
