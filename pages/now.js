@@ -46,7 +46,7 @@ export default function SingleBlog({ data, content }) {
 				<meta name="twitter:domain" content={`https://kikiding.space/now`} />
 			</Head>
 			<div className="bg-myYellow min-h-screen flex flex-col justify-between">
-				<NavBar />
+				<NavBar page="Now" />
 
 				<div className=" bg-myYellow items-center  py-5 my-5 md:px-0 px-4">
 					<div className="container max-w-screen-md bg-white border-2 border-b-8 border-black rounded-xl  mx-auto flex-col flex justify-between overflow-hidden">

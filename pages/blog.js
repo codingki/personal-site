@@ -39,7 +39,7 @@ export default function Blog({ data }) {
 						<Button text="All Posts" color="blue" />
 					</div>
 				</div>
-				<div className=" bg-myYellow items-center  pt-0 pb-5">
+				<div className=" bg-myYellow items-center  pt-0 pb-20">
 					<div className="container max-w-screen-md  mx-auto flex-col gap-5 flex justify-between md:px-0 px-4">
 						{blogs.map((item) => (
 							<div

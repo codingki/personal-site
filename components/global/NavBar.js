@@ -20,13 +20,28 @@ export default function NavBar(props) {
 						</div>
 					</a>
 				</div>
-				<div className={toggle ? 'block' : 'hidden md:block'}>
+				<div
+					className={
+						toggle
+							? 'flex md:flex-row flex-col md:gap-2 gap-3'
+							: 'md:flex hidden md:flex-row flex-col md:gap-2 gap-3'
+					}
+				>
 					<Link as={`/`} href="/">
 						<a>
 							<Button
 								slug=""
 								text="Home"
 								color={props.page == 'Home' ? 'blue' : 'white'}
+							/>
+						</a>
+					</Link>
+					<Link as={`/now`} href="/now">
+						<a>
+							<Button
+								slug=""
+								text="Now"
+								color={props.page == 'Now' ? 'blue' : 'white'}
 							/>
 						</a>
 					</Link>
@@ -39,7 +54,7 @@ export default function NavBar(props) {
 							: ' md:flex hidden md:flex-row flex-col md:gap-2 gap-3'
 					}
 				>
-					<Link as={`/blog`} href="/works">
+					<Link as={`/works`} href="/works">
 						<a>
 							<Button
 								slug="works"

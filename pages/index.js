@@ -26,10 +26,7 @@ export default function Home({ data }) {
 					content="Im a guy that can code and design, but internet makes me can do
 								anything. Crafting beautiful apps with React and ❤️"
 				/>
-				<meta
-					property="og:title"
-					content="Nur Fikri | React Native Developer"
-				/>
+				<meta property="og:title" content="Nur Fikri | Front-end Developer" />
 				<meta property="og:url" content={`https://kikiding.space/`} />
 				<meta
 					property="og:image"
@@ -52,12 +49,24 @@ export default function Home({ data }) {
 								Im a guy that can code and design, but internet makes me can do
 								anything. Crafting beautiful apps with React and ❤️
 							</p>
-							<div className="flex mt-4">
-								<Link as={`/now`} href="/now">
-									<a>
-										<Button text="About me" color="orange" />
-									</a>
-								</Link>
+							<div className="flex ">
+								<a
+									href={`https://twitter.com/intent/tweet?url=https://kikiding.space/&text=@kikiding's website`}
+									target="_blank"
+								>
+									<div
+										className=" font-semibold  text-white sm:text-md text-md px-3 py-1 rounded-xl border-2 border-b-4 border-black mt-4 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100"
+										style={{ backgroundColor: 'rgb(29, 161, 242)' }}
+									>
+										<p className="  text-center">
+											<i
+												className="fab fa-twitter fa-md"
+												style={{ color: 'white' }}
+											></i>{' '}
+											Share this to twitter
+										</p>
+									</div>
+								</a>
 							</div>
 						</div>
 						<div className="col-span-4 m-auto hidden md:inline mt-12 ">
@@ -156,8 +165,16 @@ export default function Home({ data }) {
 										{item.excerpt}
 									</p>
 									<div className="flex-row flex flex-wrap mt-2 gap-2">
-										{cat.map((item, index) => (
-											<Button key={index} text={item} color="orange" />
+										{cat.map((x, index) => (
+											<Link
+												key={index}
+												as={`/works/${item.slug}`}
+												href={'/works/[slug]'}
+											>
+												<a>
+													<Button text={x} color="orange" />
+												</a>
+											</Link>
 										))}
 									</div>
 								</div>

@@ -61,8 +61,16 @@ export default function Works({ data }) {
 											{item.excerpt}
 										</p>
 										<div className="flex-row flex flex-wrap mt-2 gap-2">
-											{cat.map((item, index) => (
-												<Button key={index} text={item} color="orange" />
+											{cat.map((x, index) => (
+												<Link
+													key={index}
+													as={`/works/${item.slug}`}
+													href={'/works/[slug]'}
+												>
+													<a>
+														<Button text={x} color="orange" />
+													</a>
+												</Link>
 											))}
 										</div>
 									</div>
