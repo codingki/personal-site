@@ -94,7 +94,7 @@ const SingleWorks = ({
                   const txt = val[0].charAt(0).toUpperCase() + val[0].slice(1);
                   return (
                     <a href={val[1]} target="_blank" key={index}>
-                      <Button text={txt} url={val[1]} blank deployment />
+                      <Button text={txt} deployment />
                     </a>
                   );
                 })}
