@@ -1,28 +1,63 @@
-const API_URL = 'https://graphql.datocms.com';
+const API_URL = "https://graphql.datocms.com";
 const API_TOKEN = process.env.DATOCMS_API_TOKEN;
 
-async function fetchAPI(query) {
-	const res = await fetch(API_URL, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-			Authorization: `Bearer ${API_TOKEN}`,
-		},
-		body: JSON.stringify({
-			query,
-		}),
-	});
+export type Blog = {
+  id: string;
+  title: string;
+  excerpt: string;
+  categories: string;
+  date: Date;
+  slug: string;
+  content: string;
+  image: {
+    url: string;
+  };
+};
 
-	const json = await res.json();
-	if (json.errors) {
-		console.error(json.errors);
-		throw new Error('Failed to fetch API');
-	}
-	return json.data;
+export type Work = {
+  date: Date;
+  id: string;
+  excerpt: string;
+  deployment: string;
+  categories: string;
+  about: string;
+  slug: string;
+  title: string;
+  technologyUsed: string;
+  image: {
+    url: string;
+  };
+};
+
+export type Blogs = {
+  allBlogs: Partial<Omit<Blog[], "content" | "image">>;
+};
+export type Works = {
+  allWorks: Partial<Omit<Work[], "technologyUsed" | "about" | "image">>;
+};
+
+async function fetchAPI(query) {
+  const res = await fetch(API_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${API_TOKEN}`,
+    },
+    body: JSON.stringify({
+      query,
+    }),
+  });
+
+  const json = await res.json();
+  if (json.errors) {
+    console.error(json.errors);
+    throw new Error("Failed to fetch API");
+  }
+  return json.data;
 }
 
 export async function getHome() {
-	const data = fetchAPI(`
+  const data: Promise<Blogs & Works> = fetchAPI(`
     query HomeQuery {
         allBlogs(orderBy: date_DESC, first: "2") {
           title
@@ -43,11 +78,11 @@ export async function getHome() {
       }
       
     `);
-	return data;
+  return data;
 }
 
 export async function getBlog() {
-	const data = fetchAPI(`
+  const data: Promise<Blogs> = fetchAPI(`
     query AllBlog {
         allBlogs(orderBy: date_DESC ) {
           title
@@ -61,13 +96,12 @@ export async function getBlog() {
       }
       
     `);
-	return data;
+  return data;
 }
 
 export async function getWork() {
-	const data = fetchAPI(`
+  const data: Promise<Works> = fetchAPI(`
     query Allwork {
-        
         allWorks(orderBy: date_DESC) {
           title
           slug
@@ -79,12 +113,12 @@ export async function getWork() {
       }
       
     `);
-	return data;
+  return data;
 }
 
 export async function getPost(slug) {
-	const data = await fetchAPI(
-		`query SingleBlog{
+  const data: Promise<{ blog: Blog }> = await fetchAPI(
+    `query SingleBlog{
       blog(filter: {slug: {eq: "${slug}"}}) {
           title
           id
@@ -98,13 +132,13 @@ export async function getPost(slug) {
           }
       }
     }`
-	);
-	return data;
+  );
+  return data;
 }
 
 export async function getWorkPost(slug) {
-	const data = await fetchAPI(
-		`query SingleWork {
+  const data: Promise<{ work: Work }> = await fetchAPI(
+    `query SingleWork {
       work(filter: {slug: {eq: "${slug}"}}) {
         date
         id
@@ -120,18 +154,23 @@ export async function getWorkPost(slug) {
         }
       }
     }`
-	);
-	return data;
+  );
+  return data;
 }
 
 export async function getNow() {
-	const data = await fetchAPI(
-		`query MyQuery {
+  const data: Promise<{
+    now: {
+      content: string;
+      updatedAt: Date;
+    };
+  }> = await fetchAPI(
+    `query MyQuery {
       now {
         content
         updatedAt
       }
     }`
-	);
-	return data;
+  );
+  return data;
 }
