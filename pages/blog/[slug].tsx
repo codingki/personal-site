@@ -1,11 +1,16 @@
-import Head from "next/head";
-import NavBar from "../../components/global/NavBar";
-import Footer from "../../components/global/Footer";
+import NavBar from "../../components/Common/NavBar";
+import Footer from "../../components/Common/Footer";
 import markdownToHtml from "../api/mdToHtml";
 import moment from "moment";
 import markdownStyles from "../../styles/markdown-styles.module.css";
 import { getPost, getBlog, Blog } from "../api/fetch";
 import { GetStaticPaths, GetStaticProps } from "next";
+import React from "react";
+import { NextSeo } from "next-seo";
+import { SinglePageLayout } from "../../components/Common/Layout";
+import { ShareToTwitterButton } from "../../components/Button";
+import { ContentCard } from "../../components/Common/Card";
+import { BlogContentCard } from "../../components/Page/Blog";
 
 const SingleBlog = ({
   data,
@@ -16,81 +21,33 @@ const SingleBlog = ({
 }) => {
   const blog = data.blog;
   return (
-    <div>
-      <Head>
-        <meta
-          name="viewport"
-          content="initial-scale=1.0, width=device-width"
-          key="viewport"
-        />
-
-        <link rel="icon" href="/favicon.png" />
-        <title>{blog.title}</title>
-        <meta name="description" content={blog.excerpt} />
-        <meta property="og:title" content={blog.title} />
-        <meta
-          property="og:url"
-          content={`https://kikiding.space/blog/${blog.slug}`}
-        />
-        <meta
-          property="og:image"
-          content={`https://kikiding.space/api/social-image?title=${blog.title}&description=${blog.excerpt}&path=https://kikiding.space/blog/${blog.slug}`}
-        />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={blog.title} />
-        <meta
-          name="twitter:image"
-          content={`https://kikiding.space/api/social-image?title=${blog.title}&description=${blog.excerpt}&path=https://kikiding.space/blog/${blog.slug}`}
-        />
-        <meta
-          name="twitter:domain"
-          content={`https://kikiding.space/blog/${blog.slug}`}
-        />
-      </Head>
-      <div className="bg-myYellow min-h-screen flex flex-col justify-between">
+    <>
+      <NextSeo
+        title={blog.title}
+        description={blog.excerpt}
+        openGraph={{
+          url: `https://kikiding.space/blog/${blog.slug}`,
+          title: blog.title,
+          description: blog.excerpt,
+          images: [
+            {
+              url: `https://kikiding.space/api/social-image?title=${blog.title}&description=${blog.excerpt}&path=https://kikiding.space/blog/${blog.slug}`,
+            },
+          ],
+          site_name: "Kikiding.space",
+        }}
+        twitter={{
+          handle: "@kikiding",
+          site: "@kikiding",
+          cardType: "summary_large_image",
+        }}
+      />
+      <SinglePageLayout>
         <NavBar page="Blog" />
-
-        <div className=" bg-myYellow items-center  py-5 my-5 md:px-0 px-4">
-          <div className="container max-w-screen-md bg-white border-2 border-b-8 border-black rounded-xl  mx-auto flex-col flex justify-between overflow-hidden">
-            {blog.image && (
-              <img src={blog.image.url} className="border-b-4 border-black" />
-            )}
-            <div className="md:py-6 md:px-6 py-6 px-4 ">
-              <h1 className="text-4xl font-bold">{blog.title}</h1>
-              <p className="text-lg font-semibold mt-2">
-                {blog.categories} | {moment(blog.date).format("DD MMM YYYY")}
-              </p>
-              <div
-                className={markdownStyles["markdown"]}
-                dangerouslySetInnerHTML={{ __html: content }}
-              />
-
-              <div className="flex flex-row justify-end">
-                <a
-                  href={`https://twitter.com/intent/tweet?url=https://kikiding.space/blog/${blog.slug}&text=${blog.title}`}
-                  target="_blank"
-                >
-                  <div
-                    className=" font-semibold  text-white sm:text-md text-md px-3 py-1 rounded-xl border-2 border-b-4 border-black mt-4"
-                    style={{ backgroundColor: "rgb(29, 161, 242)" }}
-                  >
-                    <p className="  text-center">
-                      <i
-                        className="fab fa-twitter fa-md"
-                        style={{ color: "white" }}
-                      ></i>{" "}
-                      Share this to twitter
-                    </p>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
+        <BlogContentCard blog={blog} content={content} />
         <Footer />
-      </div>
-    </div>
+      </SinglePageLayout>
+    </>
   );
 };
 

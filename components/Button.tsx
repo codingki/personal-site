@@ -1,4 +1,4 @@
-const Button = ({
+export const Button = ({
   color,
   tag,
   deployment,
@@ -33,4 +33,17 @@ const Button = ({
     </div>
   );
 };
-export default Button;
+
+export const ShareToTwitterButton: React.FC<{ url: string }> = (props) => (
+  <a href={props.url} target="_blank">
+    <div
+      className=" font-semibold  text-white sm:text-md text-md px-3 py-1 rounded-xl border-2 border-b-4 border-black mt-4 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-100"
+      style={{ backgroundColor: "rgb(29, 161, 242)" }}
+    >
+      <p className="  text-center">
+        <i className="fab fa-twitter fa-md" style={{ color: "white" }}></i>{" "}
+        Share this to twitter
+      </p>
+    </div>
+  </a>
+);
