@@ -16,6 +16,7 @@
     "moment": "^2.29.1",
     "next": "^11.1.0",
     "next-absolute-url": "^1.2.2",
+    "next-seo": "^4.26.0",
     "postcss": "^8.3.6",
     "puppeteer": "^5.5.0",
     "querystring": "^0.2.0",
