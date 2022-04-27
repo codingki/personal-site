@@ -1,5 +1,4 @@
 import { GetServerSideProps } from "next";
-
 const socialImages = ({
   title,
   description,
@@ -21,7 +20,7 @@ const socialImages = ({
           <p className="font-normal text-lg text-black mt-4">{path}</p>
         </div>
         <div className="col-span-4 m-auto hidden md:inline mt-10 ">
-          <img className="" src="/me.png" />
+          <img alt="me" src="/me.png" />
         </div>
       </div>
     </div>
