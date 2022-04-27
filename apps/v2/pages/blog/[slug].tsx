@@ -1,15 +1,11 @@
 import NavBar from "../../components/Common/NavBar";
 import Footer from "../../components/Common/Footer";
 import markdownToHtml from "../api/mdToHtml";
-import moment from "moment";
-import markdownStyles from "../../styles/markdown-styles.module.css";
 import { getPost, getBlog, Blog } from "../api/fetch";
 import { GetStaticPaths, GetStaticProps } from "next";
 import React from "react";
 import { NextSeo } from "next-seo";
 import { SinglePageLayout } from "../../components/Common/Layout";
-import { ShareToTwitterButton } from "../../components/Button";
-import { ContentCard } from "../../components/Common/Card";
 import { BlogContentCard } from "../../components/Page/Blog";
 
 const SingleBlog = ({
@@ -62,7 +58,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const data = await getPost(params.slug);
+  const data = await getPost(params?.slug);
   const content = await markdownToHtml(data.blog.content || "");
   return {
     props: { data, content },

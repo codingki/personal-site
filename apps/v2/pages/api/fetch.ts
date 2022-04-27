@@ -30,13 +30,13 @@ export type Work = {
 };
 
 export type Blogs = {
-  allBlogs: Partial<Omit<Blog[], "content" | "image">>;
+  allBlogs: Omit<Blog[], "content" | "image">;
 };
 export type Works = {
-  allWorks: Partial<Omit<Work[], "technologyUsed" | "about" | "image">>;
+  allWorks: Omit<Work[], "technologyUsed" | "about" | "image">;
 };
 
-async function fetchAPI(query) {
+async function fetchAPI(query: string) {
   const res = await fetch(API_URL, {
     method: "POST",
     headers: {
@@ -116,7 +116,7 @@ export async function getWork() {
   return data;
 }
 
-export async function getPost(slug) {
+export async function getPost(slug: string | string[] | undefined) {
   const data: Promise<{ blog: Blog }> = await fetchAPI(
     `query SingleBlog{
       blog(filter: {slug: {eq: "${slug}"}}) {
@@ -136,7 +136,7 @@ export async function getPost(slug) {
   return data;
 }
 
-export async function getWorkPost(slug) {
+export async function getWorkPost(slug: string | string[] | undefined) {
   const data: Promise<{ work: Work }> = await fetchAPI(
     `query SingleWork {
       work(filter: {slug: {eq: "${slug}"}}) {

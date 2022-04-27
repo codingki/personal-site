@@ -53,16 +53,16 @@ const SingleWorks = ({
 export default SingleWorks;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const allBlogs = await getWork();
-  const allPosts = allBlogs.allWorks;
+  const workRes = await getWork();
+  const allWorks = workRes.allWorks;
   return {
-    paths: allPosts.map((post) => `/works/${post.slug}`) || [],
+    paths: allWorks.map((post) => `/works/${post.slug}`) || [],
     fallback: false,
   };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const data = await getWorkPost(params.slug);
+  const data = await getWorkPost(params?.slug);
   const content = await markdownToHtml(data.work.about || "");
   if (!data) {
     return {
