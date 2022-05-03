@@ -23,6 +23,7 @@
     "next-absolute-url": "^1.2.2",
     "next-seo": "^5.4.0",
     "puppeteer": "5.5.0",
+    "puppeteer-core": "5.5.0",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-markdown": "^8.0.3"
