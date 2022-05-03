@@ -14,10 +14,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const url = `${origin}/image?${params}`;
 
     browser = await chrome.puppeteer.launch({
-      args: [],
+      args: chrome.args,
       defaultViewport: chrome.defaultViewport,
+      executablePath: await chrome.executablePath,
       headless: chrome.headless,
-      ignoreHTTPSErrors: true,
+      ignoreHTTPSErrors: chrome.headless,
     });
     const page = await browser.newPage();
 
