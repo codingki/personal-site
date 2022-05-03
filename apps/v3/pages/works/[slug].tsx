@@ -7,6 +7,8 @@ import Link from "next/link";
 import { MyButton, SocialButton } from "../../components/Button";
 import { SinglePageContent } from "../../components/Layout";
 import { getWork, getWorkPost, Work } from "../api/fetch";
+import ChakraUIRenderer from "chakra-ui-markdown-renderer";
+import ReactMarkdown from "react-markdown";
 
 export interface SingleWorkPageProps {
   data: {
@@ -70,7 +72,11 @@ const SingleWork: NextPage<SingleWorkPageProps> = ({ data }) => {
           <Text fontWeight="semibold" fontSize="xl">
             About the project
           </Text>
-          <Text>{data.work.about}</Text>
+          <ReactMarkdown
+            components={ChakraUIRenderer()}
+            children={data.work.about}
+            skipHtml
+          />
           <Text fontWeight="semibold" fontSize="xl">
             Technology used :
           </Text>
@@ -89,31 +95,35 @@ const SingleWork: NextPage<SingleWorkPageProps> = ({ data }) => {
               </MyButton>
             ))}
           </Flex>
-          <Text fontWeight="semibold" fontSize="xl">
-            Links :
-          </Text>
+          {data.work.deployment && (
+            <Text fontWeight="semibold" fontSize="xl">
+              Links :
+            </Text>
+          )}
+
           <Flex wrap="wrap" gap={2}>
-            {data.work.deployment.split(", ").map((item) => {
-              const val = item.split(": ");
-              const txt = val[0].charAt(0).toUpperCase() + val[0].slice(1);
-              return (
-                <Link href={val[1]} passHref>
-                  <a target="_blank">
-                    <MyButton
-                      bgColor="paper"
-                      color="black"
-                      px="2"
-                      py="1"
-                      textTransform="capitalize"
-                      fontSize={["md"]}
-                      as="a"
-                    >
-                      {txt}
-                    </MyButton>
-                  </a>
-                </Link>
-              );
-            })}
+            {data.work.deployment &&
+              data.work.deployment.split(", ").map((item) => {
+                const val = item.split(": ");
+                const txt = val[0].charAt(0).toUpperCase() + val[0].slice(1);
+                return (
+                  <Link href={val[1]} passHref>
+                    <a target="_blank">
+                      <MyButton
+                        bgColor="paper"
+                        color="black"
+                        px="2"
+                        py="1"
+                        textTransform="capitalize"
+                        fontSize={["md"]}
+                        as="a"
+                      >
+                        {txt}
+                      </MyButton>
+                    </a>
+                  </Link>
+                );
+              })}
           </Flex>
           <Link
             href={`https://twitter.com/intent/tweet?url=https://kikiding.space/works/${data.work.slug}&text=${data.work.title}`}

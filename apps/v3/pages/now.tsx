@@ -38,7 +38,7 @@ const Now: NextPage<NowPageProps> = ({ data }) => {
         <Flex direction="column" gap={2} p={4} pt={6} pb={12}>
           <Heading>Current state</Heading>
           <Text fontWeight="semibold" fontSize="lg" mb={4}>
-            {format(new Date(data.now.updatedAt), "dd MMM yyyy")}
+            Last updated : {format(new Date(data.now.updatedAt), "dd MMM yyyy")}
           </Text>
           <ReactMarkdown
             components={ChakraUIRenderer()}
