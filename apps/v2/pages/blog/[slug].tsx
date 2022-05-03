@@ -53,7 +53,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const allBlogs = await getBlog();
   const allPosts = allBlogs.allBlogs;
   return {
-    paths: allPosts.map((post) => `/blog/${post.slug}`) || [],
+    paths: !!allPosts ? allPosts.map((post) => `/blog/${post.slug}`) : [],
     fallback: false,
   };
 };
