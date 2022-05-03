@@ -31,7 +31,7 @@ export const Header: React.FC = (props) => (
   </div>
 );
 
-export const BlogListSection: React.FC = (props) => (
+export const BlogListSection = (props: { children: React.ReactNode }) => (
   <div className=" bg-myYellow items-center  pt-0 pb-5">
     <div className="container max-w-screen-md  mx-auto md:flex-row flex-col gap-4 flex justify-between md:px-0 px-4">
       {props.children}
@@ -39,7 +39,7 @@ export const BlogListSection: React.FC = (props) => (
   </div>
 );
 
-export const WorkListSection: React.FC = (props) => (
+export const WorkListSection = (props: { children: React.ReactNode }) => (
   <div className=" bg-myYellow items-center  pt-0 pb-20">
     <div className="container max-w-screen-md  mx-auto  flex-col gap-4 flex justify-between md:px-0 px-4">
       {props.children}

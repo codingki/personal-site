@@ -1,8 +1,8 @@
-export const RubricLayout: React.FC = (props) => (
+export const RubricLayout = (props: { children: React.ReactNode }) => (
   <div className="bg-myYellow min-h-screen">{props.children}</div>
 );
 
-export const SinglePageLayout: React.FC = (props) => (
+export const SinglePageLayout = (props: { children: React.ReactNode }) => (
   <div className="bg-myYellow min-h-screen flex flex-col justify-between">
     {props.children}
   </div>
