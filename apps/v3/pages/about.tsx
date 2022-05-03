@@ -1,4 +1,4 @@
-import { Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import { format } from "date-fns";
 import type { GetStaticProps, NextPage } from "next";
 import { SinglePageContent } from "../components/Layout";
@@ -8,6 +8,7 @@ import ReactMarkdown from "react-markdown";
 import { NextSeo } from "next-seo";
 import { MyButton } from "../components/Button";
 import Link from "next/link";
+import Image from "next/image";
 
 export interface AboutPageProps {
   data: { about: { content: string } };
@@ -37,6 +38,20 @@ const About: NextPage<AboutPageProps> = ({ data }) => {
         }}
       />
       <SinglePageContent minH={["75vh", "65vh"]} p={0}>
+        <Box
+          minH={[250, 400]}
+          position="relative"
+          className="handDrawnBorder"
+          m={4}
+          mb={0}
+        >
+          <Image
+            alt={"actual me"}
+            src={"/actualme.jpeg"}
+            layout="fill"
+            objectFit="cover"
+          />
+        </Box>
         <Flex direction="column" gap={2} p={4} pt={6} pb={12}>
           <ReactMarkdown
             components={ChakraUIRenderer()}
