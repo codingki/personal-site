@@ -44,7 +44,7 @@ const SocialImage = ({
         position="relative"
         alignSelf="flex-end"
       >
-        <Image src={"/me.png"} layout="fill" />
+        <Image alt="Kiki illustrated" src={"/me.png"} layout="fill" />
       </Box>
     </Stack>
   </Flex>

@@ -56,10 +56,10 @@ export const BlogCard: React.FC<{ blog: Blog }> = (props) => (
   </div>
 );
 
-export const ContentCard: React.FC = (props) => (
-  <div className=" bg-myYellow items-center  py-5 my-5 md:px-0 px-4">
+export const ContentCard = ({ children }: { children: React.ReactNode }) => (
+  <div className="bg-myYellow items-center  py-5 my-5 md:px-0 px-4">
     <div className="container max-w-screen-md bg-white border-2 border-b-8 border-black rounded-xl  mx-auto flex-col flex justify-between overflow-hidden">
-      {props.children}
+      {children}
     </div>
   </div>
 );

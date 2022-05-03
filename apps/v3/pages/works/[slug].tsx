@@ -48,7 +48,12 @@ const SingleWork: NextPage<SingleWorkPageProps> = ({ data }) => {
             m={4}
             mb={0}
           >
-            <Image src={data.work.image.url} layout="fill" objectFit="cover" />
+            <Image
+              alt={data.work.title}
+              src={data.work.image.url}
+              layout="fill"
+              objectFit="cover"
+            />
           </Box>
         )}
 

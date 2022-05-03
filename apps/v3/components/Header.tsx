@@ -26,7 +26,7 @@ export const Header = () => (
         {SOCIAL_LINKS.map((item) => (
           <Link href={item.link} key={item.title} passHref>
             <a target="_blank">
-              <SocialButton>{item.icon}</SocialButton>
+              <SocialButton arial-label={item.title}>{item.icon}</SocialButton>
             </a>
           </Link>
         ))}
@@ -38,7 +38,7 @@ export const Header = () => (
       height={240}
       position="relative"
     >
-      <Image src={"/me.png"} layout="fill" />
+      <Image alt="Kiki Illustrated" src={"/me.png"} layout="fill" />
     </Box>
   </Stack>
 );
