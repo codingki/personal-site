@@ -16,7 +16,7 @@
     "@emotion/styled": "^11",
     "@fontsource/mali": "^4.5.5",
     "chakra-ui-markdown-renderer": "^4.0.0",
-    "chrome-aws-lambda": "^10.1.0",
+    "chrome-aws-lambda": "^5.5.0",
     "date-fns": "^2.28.0",
     "framer-motion": "^6",
     "next": "12.1.5",
