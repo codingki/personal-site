@@ -21,14 +21,14 @@ const SocialImage = ({
     width="1024px"
     height="512px"
   >
-    <Stack
+    <Flex
       direction="row"
       w="full"
       bg="paper"
       align="center"
       className="handDrawnBorder"
     >
-      <Stack p={"8"} px={["4", "8", "8"]} minW="70%">
+      <Stack p={"8"} px={["4", "8", "8"]}>
         <Heading fontWeight="bold" fontSize="4xl">
           {title}
         </Heading>
@@ -37,16 +37,7 @@ const SocialImage = ({
         </Text>
         <Text fontSize="lg">{path}</Text>
       </Stack>
-      <Box
-        display={["none", "none", "block"]}
-        width={500}
-        height={250}
-        position="relative"
-        alignSelf="flex-end"
-      >
-        <Image alt="Kiki illustrated" src={"/me.png"} layout="fill" />
-      </Box>
-    </Stack>
+    </Flex>
   </Flex>
 );
 export default SocialImage;
