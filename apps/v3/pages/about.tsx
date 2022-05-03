@@ -52,7 +52,7 @@ const About: NextPage<AboutPageProps> = ({ data }) => {
             objectFit="cover"
           />
         </Box>
-        <Flex direction="column" gap={2} p={4} pt={6} pb={12}>
+        <Flex direction="column" gap={2} p={4} pt={2} pb={12}>
           <ReactMarkdown
             components={ChakraUIRenderer()}
             children={data.about.content}
