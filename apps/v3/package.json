@@ -26,7 +26,8 @@
     "puppeteer-core": "6.0.0",
     "react": "18.1.0",
     "react-dom": "18.1.0",
-    "react-markdown": "^8.0.3"
+    "react-markdown": "^8.0.3",
+    "react-twitter-widgets": "^1.10.0"
   },
   "devDependencies": {
     "@types/node": "17.0.29",

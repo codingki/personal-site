@@ -1,4 +1,4 @@
-import { CenterProps, Flex, forwardRef, Heading, Text } from "@chakra-ui/react";
+import { Box, Center, Flex, Heading, Link, Text } from "@chakra-ui/react";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { SinglePageContent } from "../../components/Layout";
 import { Blog, getBlog, getPost } from "../api/fetch";
@@ -7,8 +7,9 @@ import ReactMarkdown from "react-markdown";
 import { format } from "date-fns";
 import { Twitter } from "@chakra-icons/bootstrap";
 import { SocialButton } from "../../components/Button";
-import Link from "next/link";
+import NextLink from "next/link";
 import { NextSeo } from "next-seo";
+import { Tweet } from "react-twitter-widgets";
 
 export interface SingleBlogPageProps {
   data: { blog: Blog };
@@ -44,7 +45,7 @@ const SingleBlog: NextPage<SingleBlogPageProps> = ({ data }) => {
             {data.blog.categories} |{" "}
             {format(new Date(data.blog.date), "dd MMM yyyy")}
           </Text>
-          <Link
+          <NextLink
             href={`https://twitter.com/intent/tweet?url=https://kikiding.space/works/${data.blog.slug}&text=${data.blog.title}`}
             passHref
           >
@@ -63,10 +64,42 @@ const SingleBlog: NextPage<SingleBlogPageProps> = ({ data }) => {
               <Twitter color="paper" />
               Share to twitter
             </SocialButton>
-          </Link>
+          </NextLink>
           <ReactMarkdown
-            components={ChakraUIRenderer()}
             children={data.blog.content}
+            components={{
+              ...ChakraUIRenderer(),
+              a: (props) => {
+                if (props.href?.startsWith("https://twitter.com")) {
+                  return (
+                    <Center my={2}>
+                      <Box minW={["100%", "100%", "500px"]}>
+                        <Tweet
+                          tweetId={String(
+                            props.href.split("status/")[1].split("?")[0]
+                          )}
+                          renderError={(error) => {
+                            return (
+                              <NextLink href={"#"} passHref>
+                                <Link color="blue">{props.children}</Link>
+                              </NextLink>
+                            );
+                          }}
+                        />
+                      </Box>
+                    </Center>
+                  );
+                } else {
+                  return (
+                    <NextLink href={"#"} passHref>
+                      <Link color="blue" fontWeight="semibold">
+                        {props.children}
+                      </Link>
+                    </NextLink>
+                  );
+                }
+              },
+            }}
             skipHtml
           />
         </Flex>
