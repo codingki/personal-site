@@ -24,6 +24,10 @@ const Now: NextPage<NowPageProps> = ({ data }) => {
           images: [
             {
               url: "https://kikiding.space/api/social-image?title=Now Page&description=My current state&path=https://kikiding.space/now",
+              width: 1024,
+              height: 512,
+              alt: "kikiding.space",
+              type: "image/png",
             },
           ],
           site_name: "Kikiding.space",

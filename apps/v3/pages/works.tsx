@@ -20,6 +20,10 @@ const Works: NextPage<WorksPageProps> = ({ data }) => {
           images: [
             {
               url: "https://kikiding.space/api/social-image?title=My Works&description=Project that I've touched&path=https://kikiding.space/works",
+              width: 1024,
+              height: 512,
+              alt: "kikiding.space",
+              type: "image/png",
             },
           ],
           site_name: "Kikiding.space",

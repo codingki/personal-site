@@ -27,6 +27,10 @@ const About: NextPage<AboutPageProps> = ({ data }) => {
           images: [
             {
               url: "https://kikiding.space/api/social-image?title=About Me&description=Know me more&path=https://kikiding.space/about",
+              width: 1024,
+              height: 512,
+              alt: "kikiding.space",
+              type: "image/png",
             },
           ],
           site_name: "Kikiding.space",
