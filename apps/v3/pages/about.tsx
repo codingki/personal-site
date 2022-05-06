@@ -1,14 +1,14 @@
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
-import { format } from "date-fns";
+import { Box, Center, Flex, Link } from "@chakra-ui/react";
 import type { GetStaticProps, NextPage } from "next";
 import { SinglePageContent } from "../components/Layout";
-import { getAbout, getNow } from "./api/fetch";
+import { getAbout } from "./api/fetch";
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 import ReactMarkdown from "react-markdown";
 import { NextSeo } from "next-seo";
 import { MyButton } from "../components/Button";
-import Link from "next/link";
+import NextLink from "next/link";
 import Image from "next/image";
+import { Tweet } from "react-twitter-widgets";
 
 export interface AboutPageProps {
   data: { about: { content: string } };
@@ -60,17 +60,65 @@ const About: NextPage<AboutPageProps> = ({ data }) => {
         </Box>
         <Flex direction="column" gap={2} p={4} pt={2} pb={12}>
           <ReactMarkdown
-            components={ChakraUIRenderer()}
+            components={{
+              ...ChakraUIRenderer(),
+              a: (props) => {
+                if (props.href?.startsWith("https://twitter.com")) {
+                  return (
+                    <Center my={2}>
+                      <Box minW={["100%", "100%", "500px"]}>
+                        <Tweet
+                          tweetId={String(
+                            props.href.split("status/")[1].split("?")[0]
+                          )}
+                          renderError={(error) => {
+                            return (
+                              <NextLink href={"#"} passHref>
+                                <Link color="blue">{props.children}</Link>
+                              </NextLink>
+                            );
+                          }}
+                        />
+                      </Box>
+                    </Center>
+                  );
+                } else {
+                  return (
+                    <NextLink href={"#"} passHref>
+                      <Link color="blue" fontWeight="semibold">
+                        {props.children}
+                      </Link>
+                    </NextLink>
+                  );
+                }
+              },
+              img: (props) => {
+                return (
+                  <Box
+                    minH={[250, 400]}
+                    position="relative"
+                    className="handDrawnBorderLight"
+                  >
+                    <Image
+                      alt={"about"}
+                      src={String(props.src)}
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </Box>
+                );
+              },
+            }}
             children={data.about.content}
             skipHtml
           />
-          <Link href="/resume" passHref>
+          <NextLink href="/resume" passHref>
             <a target="_blank">
               <MyButton bgColor="orange" color="paper">
                 View my resume
               </MyButton>
             </a>
-          </Link>
+          </NextLink>
         </Flex>
       </SinglePageContent>
     </>

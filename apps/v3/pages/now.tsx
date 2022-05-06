@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Center, Flex, Heading, Text, Link } from "@chakra-ui/react";
 import { format } from "date-fns";
 import type { GetStaticProps, NextPage } from "next";
 import { SinglePageContent } from "../components/Layout";
@@ -6,6 +6,9 @@ import { getNow } from "./api/fetch";
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 import ReactMarkdown from "react-markdown";
 import { NextSeo } from "next-seo";
+import { Tweet } from "react-twitter-widgets";
+import NextLink from "next/link";
+import Image from "next/image";
 
 export interface NowPageProps {
   data: { now: { content: string; updatedAt: Date } };
@@ -47,7 +50,55 @@ const Now: NextPage<NowPageProps> = ({ data }) => {
             Last updated : {format(new Date(data.now.updatedAt), "dd MMM yyyy")}
           </Text>
           <ReactMarkdown
-            components={ChakraUIRenderer()}
+            components={{
+              ...ChakraUIRenderer(),
+              a: (props) => {
+                if (props.href?.startsWith("https://twitter.com")) {
+                  return (
+                    <Center my={2}>
+                      <Box minW={["100%", "100%", "500px"]}>
+                        <Tweet
+                          tweetId={String(
+                            props.href.split("status/")[1].split("?")[0]
+                          )}
+                          renderError={(error) => {
+                            return (
+                              <NextLink href={"#"} passHref>
+                                <Link color="blue">{props.children}</Link>
+                              </NextLink>
+                            );
+                          }}
+                        />
+                      </Box>
+                    </Center>
+                  );
+                } else {
+                  return (
+                    <NextLink href={"#"} passHref>
+                      <Link color="blue" fontWeight="semibold">
+                        {props.children}
+                      </Link>
+                    </NextLink>
+                  );
+                }
+              },
+              img: (props) => {
+                return (
+                  <Box
+                    minH={[250, 400]}
+                    position="relative"
+                    className="handDrawnBorderLight"
+                  >
+                    <Image
+                      alt={"about"}
+                      src={String(props.src)}
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </Box>
+                );
+              },
+            }}
             children={data.now.content}
             skipHtml
           />

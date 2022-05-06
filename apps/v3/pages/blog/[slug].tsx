@@ -10,6 +10,7 @@ import { SocialButton } from "../../components/Button";
 import NextLink from "next/link";
 import { NextSeo } from "next-seo";
 import { Tweet } from "react-twitter-widgets";
+import Image from "next/image";
 
 export interface SingleBlogPageProps {
   data: { blog: Blog };
@@ -104,6 +105,22 @@ const SingleBlog: NextPage<SingleBlogPageProps> = ({ data }) => {
                     </NextLink>
                   );
                 }
+              },
+              img: (props) => {
+                return (
+                  <Box
+                    minH={[250, 400]}
+                    position="relative"
+                    className="handDrawnBorderLight"
+                  >
+                    <Image
+                      alt={data.blog.title}
+                      src={String(props.src)}
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </Box>
+                );
               },
             }}
             skipHtml

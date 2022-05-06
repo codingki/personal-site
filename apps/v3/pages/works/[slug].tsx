@@ -118,6 +118,22 @@ const SingleWork: NextPage<SingleWorkPageProps> = ({ data }) => {
                   );
                 }
               },
+              img: (props) => {
+                return (
+                  <Box
+                    minH={[250, 400]}
+                    position="relative"
+                    className="handDrawnBorderLight"
+                  >
+                    <Image
+                      alt={data.work.title}
+                      src={String(props.src)}
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </Box>
+                );
+              },
             }}
             skipHtml
           />
