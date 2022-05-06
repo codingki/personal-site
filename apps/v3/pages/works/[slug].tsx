@@ -1,14 +1,15 @@
 import { Twitter } from "@chakra-icons/bootstrap";
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Center, Flex, Heading, Link, Text } from "@chakra-ui/react";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
-import Link from "next/link";
+import NextLink from "next/link";
 import { MyButton, SocialButton } from "../../components/Button";
 import { SinglePageContent } from "../../components/Layout";
 import { getWork, getWorkPost, Work } from "../api/fetch";
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 import ReactMarkdown from "react-markdown";
+import { Tweet } from "react-twitter-widgets";
 
 export interface SingleWorkPageProps {
   data: {
@@ -78,8 +79,40 @@ const SingleWork: NextPage<SingleWorkPageProps> = ({ data }) => {
             About the project
           </Text>
           <ReactMarkdown
-            components={ChakraUIRenderer()}
             children={data.work.about}
+            components={{
+              ...ChakraUIRenderer(),
+              a: (props) => {
+                if (props.href?.startsWith("https://twitter.com")) {
+                  return (
+                    <Center my={2}>
+                      <Box minW={["100%", "100%", "500px"]}>
+                        <Tweet
+                          tweetId={String(
+                            props.href.split("status/")[1].split("?")[0]
+                          )}
+                          renderError={(error) => {
+                            return (
+                              <NextLink href={"#"} passHref>
+                                <Link color="blue">{props.children}</Link>
+                              </NextLink>
+                            );
+                          }}
+                        />
+                      </Box>
+                    </Center>
+                  );
+                } else {
+                  return (
+                    <NextLink href={"#"} passHref>
+                      <Link color="blue" fontWeight="semibold">
+                        {props.children}
+                      </Link>
+                    </NextLink>
+                  );
+                }
+              },
+            }}
             skipHtml
           />
           <Text fontWeight="semibold" fontSize="xl">
@@ -112,7 +145,7 @@ const SingleWork: NextPage<SingleWorkPageProps> = ({ data }) => {
                 const val = item.split(": ");
                 const txt = val[0].charAt(0).toUpperCase() + val[0].slice(1);
                 return (
-                  <Link href={val[1]} passHref>
+                  <NextLink href={val[1]} passHref>
                     <a target="_blank">
                       <MyButton
                         bgColor="paper"
@@ -126,11 +159,11 @@ const SingleWork: NextPage<SingleWorkPageProps> = ({ data }) => {
                         {txt}
                       </MyButton>
                     </a>
-                  </Link>
+                  </NextLink>
                 );
               })}
           </Flex>
-          <Link
+          <NextLink
             href={`https://twitter.com/intent/tweet?url=https://kikiding.space/works/${data.work.slug}&text=${data.work.title}`}
             passHref
           >
@@ -148,7 +181,7 @@ const SingleWork: NextPage<SingleWorkPageProps> = ({ data }) => {
               <Twitter color="paper" />
               Share to twitter
             </SocialButton>
-          </Link>
+          </NextLink>
         </Flex>
       </SinglePageContent>
     </>
