@@ -36,7 +36,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     });
 
     res.setHeader("content-type", "image/png");
-    res.setHeader("cache-control", "public, max-age=604800, immutable");
+    res.setHeader("cache-control", "public, max-age=120");
     res.send(screenshot);
   } catch (error) {
     res.status(500).json({ error });
