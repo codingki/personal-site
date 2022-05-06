@@ -27,7 +27,7 @@ const SingleBlog: NextPage<SingleBlogPageProps> = ({ data }) => {
           description: data.blog.excerpt,
           images: [
             {
-              url: `https://kikiding.space/api/social-image?title=${data.blog.title}&description=${data.blog.excerpt}&path=https://kikiding.space/works/${data.blog.slug}`,
+              url: `https://kikiding.space/api/social-image?title=${data.blog.title}&description=${data.blog.excerpt}&path=https://kikiding.space/blog/${data.blog.slug}`,
               width: 1024,
               height: 512,
               alt: data.blog.title,
