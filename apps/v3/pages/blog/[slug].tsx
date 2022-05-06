@@ -28,6 +28,10 @@ const SingleBlog: NextPage<SingleBlogPageProps> = ({ data }) => {
           images: [
             {
               url: `https://kikiding.space/api/social-image?title=${data.blog.title}&description=${data.blog.excerpt}&path=https://kikiding.space/works/${data.blog.slug}`,
+              width: 1024,
+              height: 512,
+              alt: data.blog.title,
+              type: "image/png",
             },
           ],
           site_name: "Kikiding.space",
