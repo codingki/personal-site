@@ -19,7 +19,9 @@ const Blog: NextPage<BlogPageProps> = ({ data }) => {
           description: "A place to share something",
           images: [
             {
-              url: "https://kikiding.space/api/social-image?title=My Blog&description=A place to share something &path=https://kikiding.space/blog",
+              url: encodeURI(
+                "https://kikiding.space/api/social-image?title=My Blog&description=A place to share something &path=https://kikiding.space/blog"
+              ),
               width: 1024,
               height: 512,
               alt: "kikiding.space",

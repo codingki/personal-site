@@ -29,7 +29,9 @@ const SingleWork: NextPage<SingleWorkPageProps> = ({ data }) => {
           description: data.work.excerpt,
           images: [
             {
-              url: `https://kikiding.space/api/social-image?title=${data.work.title}&description=${data.work.excerpt}&path=https://kikiding.space/works/${data.work.slug}`,
+              url: encodeURI(
+                `https://kikiding.space/api/social-image?title=${data.work.title}&description=${data.work.excerpt}&path=https://kikiding.space/works/${data.work.slug}`
+              ),
               width: 1024,
               height: 512,
               alt: data.work.title,

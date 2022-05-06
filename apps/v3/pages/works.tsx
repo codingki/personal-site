@@ -19,7 +19,9 @@ const Works: NextPage<WorksPageProps> = ({ data }) => {
           description: "Project that I've touched",
           images: [
             {
-              url: "https://kikiding.space/api/social-image?title=My Works&description=Project that I've touched&path=https://kikiding.space/works",
+              url: encodeURI(
+                "https://kikiding.space/api/social-image?title=My Works&description=Project that I've touched&path=https://kikiding.space/works"
+              ),
               width: 1024,
               height: 512,
               alt: "kikiding.space",

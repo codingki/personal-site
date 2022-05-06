@@ -26,7 +26,9 @@ const Home: NextPage<HomePageProps> = ({ data }) => {
             "I am a software engineer focused on frontend development. I can describe my self as a designer who trapped in the mind of a programmer, I love building modern and beautiful app.",
           images: [
             {
-              url: "https://kikiding.space/api/social-image?title=Hi,%20I%20am%20Kiki&description=I am a software engineer focused on frontend development. I can describe my self as a designer who trapped in the mind of a programmer, I love building modern and beautiful app&path=https://kikiding.space/",
+              url: encodeURI(
+                "https://kikiding.space/api/social-image?title=Hi,%20I%20am%20Kiki&description=I am a software engineer focused on frontend development. I can describe my self as a designer who trapped in the mind of a programmer, I love building modern and beautiful app&path=https://kikiding.space/"
+              ),
               width: 1024,
               height: 512,
               alt: "kikiding.space",
