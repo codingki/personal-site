@@ -1,4 +1,4 @@
-import { Github, Twitter, Youtube } from "@chakra-icons/bootstrap";
+import { Github, Linkedin, Twitter, Youtube } from "@chakra-icons/bootstrap";
 import React from "react";
 
 export const SOCIAL_LINKS = [
@@ -16,5 +16,10 @@ export const SOCIAL_LINKS = [
     title: "youtube",
     link: "https://www.youtube.com/channel/UC3D632wKmPs7XwH83DAX16Aå",
     icon: <Youtube boxSize={5} />,
+  },
+  {
+    title: "linkedIn",
+    link: "https://www.linkedin.com/in/nur-fikri/",
+    icon: <Linkedin boxSize={5} />,
   },
 ];

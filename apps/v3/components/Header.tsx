@@ -30,11 +30,10 @@ export const Header = () => {
                   arial-label={item.title}
                   as="button"
                   fontSize="md"
-                  px={["4", "3", "2"]}
-                  py={[1, 0.5]}
+                  px={3}
+                  py={1}
                 >
-                  {item.icon}{" "}
-                  <Text display={["none", "block"]}>{item.title}</Text>
+                  {item.icon}
                 </SocialButton>
               </a>
             </Link>
