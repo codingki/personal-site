@@ -29,6 +29,11 @@ export type Work = {
   };
 };
 
+export type LogList = {
+  date: string;
+  content: string;
+};
+
 export type Blogs = {
   allBlogs: Omit<Blog[], "content" | "image">;
 };
@@ -57,7 +62,7 @@ async function fetchAPI(query: string) {
 }
 
 export async function getHome() {
-  const data: Promise<Blogs & Works> = fetchAPI(`
+  const data: Promise<Blogs & Works & { allLogLists: LogList[] }> = fetchAPI(`
     query HomeQuery {
         allBlogs(orderBy: date_DESC, first: "2") {
           title
@@ -75,8 +80,11 @@ export async function getHome() {
           date
           categories
         }
+        allLogLists(orderBy: date_DESC){
+          content,
+          date
+        }
       }
-      
     `);
   return data;
 }

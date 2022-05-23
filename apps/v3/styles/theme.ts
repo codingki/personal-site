@@ -60,6 +60,12 @@ export const theme = extendTheme({
         scrollbarWidth: "none",
         msOverflowStyle: "none",
       },
+      ".handDrawnBorderLeft": {
+        borderRadius: "0px 15px 225px 15px/15px 225px 15px 255px",
+        borderLeft: "solid 6px #0a0a0a",
+        borderTop: "solid 6px #0a0a0a",
+        overflow: "hidden",
+      },
     }),
   },
 } as ThemeOverride);
