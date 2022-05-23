@@ -110,7 +110,7 @@ const SingleWork: NextPage<SingleWorkPageProps> = ({ data }) => {
                   );
                 } else {
                   return (
-                    <NextLink href={"#"} passHref>
+                    <NextLink href={props.href || ""} passHref>
                       <Link color="blue" fontWeight="semibold">
                         {props.children}
                       </Link>
