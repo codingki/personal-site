@@ -45,7 +45,7 @@ const About: NextPage<AboutPageProps> = ({ data }) => {
       />
       <SinglePageContent minH={["75vh", "65vh"]} p={0}>
         <Box
-          minH={[250, 400]}
+          minH={[250, 400, 480]}
           position="relative"
           className="handDrawnBorder"
           m={4}
@@ -53,7 +53,7 @@ const About: NextPage<AboutPageProps> = ({ data }) => {
         >
           <Image
             alt={"actual me"}
-            src={"/actualme.jpeg"}
+            src={"/kiki.jpg"}
             layout="fill"
             objectFit="cover"
           />
@@ -95,7 +95,7 @@ const About: NextPage<AboutPageProps> = ({ data }) => {
               img: (props) => {
                 return (
                   <Box
-                    minH={[250, 400]}
+                    minH={[250, 400, 480]}
                     position="relative"
                     className="handDrawnBorderLight"
                   >

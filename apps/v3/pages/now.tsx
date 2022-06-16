@@ -85,7 +85,7 @@ const Now: NextPage<NowPageProps> = ({ data }) => {
               img: (props) => {
                 return (
                   <Box
-                    minH={[250, 400]}
+                    minH={[250, 400, 480]}
                     position="relative"
                     className="handDrawnBorderLight"
                   >
