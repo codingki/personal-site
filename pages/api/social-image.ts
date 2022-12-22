@@ -1,0 +1,53 @@
+/* eslint-disable eslint-comments/disable-enable-pair */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import chrome from "chrome-aws-lambda";
+import type { NextApiRequest, NextApiResponse } from "next";
+import absoluteUrl from "next-absolute-url";
+
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  let browser = null;
+  const { origin } = absoluteUrl(req);
+
+  try {
+    const title = req.query.title as string;
+    const description = req.query.description as string;
+    const path = req.query.path as string;
+    const params = new URLSearchParams({ title, description, path });
+    const url = `${origin}/image?${params}`;
+    browser = await chrome.puppeteer.launch({
+      args: chrome.args,
+      defaultViewport: chrome.defaultViewport,
+      executablePath: await chrome.executablePath,
+      headless: chrome.headless,
+      ignoreHTTPSErrors: chrome.headless,
+    });
+    const page = await browser.newPage();
+
+    await page.setViewport({
+      width: 1024,
+      height: 512,
+    });
+
+    await page.goto(url, {
+      waitUntil: "load",
+    });
+
+    const screenshot = await page.screenshot({
+      encoding: "binary",
+    });
+
+    res.setHeader("content-type", "image/png");
+    res.setHeader("cache-control", "public, max-age=120");
+    res.send(screenshot);
+  } catch (error) {
+    res.status(500).json({ error });
+  } finally {
+    if (browser) {
+      await browser.close();
+    }
+  }
+};
+
+export default handler;

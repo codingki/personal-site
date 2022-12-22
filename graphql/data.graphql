@@ -1,0 +1,87 @@
+query HomeQuery {
+  allBlogs(orderBy: date_DESC, first: "2") {
+    title
+    id
+    excerpt
+    categories
+    date
+    slug
+  }
+  allWorks(orderBy: date_DESC, first: "3") {
+    title
+    slug
+    id
+    excerpt
+    date
+    categories
+  }
+  allLogLists(orderBy: date_DESC) {
+    content
+    date
+  }
+}
+
+query AllBlog {
+  allBlogs(orderBy: date_DESC) {
+    title
+    id
+    excerpt
+    categories
+    date
+    slug
+  }
+}
+
+query Allwork {
+  allWorks(orderBy: date_DESC) {
+    title
+    slug
+    id
+    excerpt
+    date
+    categories
+  }
+}
+
+query SingleBlog($slug: String) {
+  blog(filter: { slug: { eq: $slug } }) {
+    title
+    id
+    excerpt
+    categories
+    date
+    slug
+    content
+    image {
+      url
+    }
+  }
+}
+
+query SingleWork($slug: String) {
+  work(filter: { slug: { eq: $slug } }) {
+    date
+    id
+    excerpt
+    deployment
+    categories
+    about
+    slug
+    title
+    technologyUsed
+    image {
+      url
+    }
+  }
+}
+query NowPage {
+  now {
+    content
+  }
+}
+
+query AboutPage {
+  about {
+    content
+  }
+}

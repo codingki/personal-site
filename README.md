@@ -1,3 +1,8 @@
-## kikiding.space
+# kikiding.space
 
-Personal website made using Next.js, Tailwind(apps/v2), Chakra UI(apps/v3), Turborepo, DatoCMS
+Using:
+
+- Next.js
+- Chakra UI
+- DatoCMS
+- [Strangelove style guide](https://github.com/strangelove-ventures/style-guide)
