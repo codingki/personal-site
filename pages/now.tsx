@@ -1,6 +1,7 @@
 import { Box, Center, Flex, Heading, Link, Text } from "@chakra-ui/react";
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 import { format } from "date-fns";
+import type { NowPageQuery } from "graphql/generated";
 import { NowPageDocument } from "graphql/generated";
 import { request } from "lib/request";
 import type { GetStaticProps, NextPage } from "next";
@@ -12,7 +13,7 @@ import { Tweet } from "react-twitter-widgets";
 import { SinglePageContent } from "../components/Layout";
 
 export interface NowPageProps {
-  data: { now: { content: string; updatedAt: Date } };
+  data: NowPageQuery;
 }
 
 const Now: NextPage<NowPageProps> = ({ data }) => {
@@ -48,7 +49,7 @@ const Now: NextPage<NowPageProps> = ({ data }) => {
         <Flex direction="column" gap={2} p={4} pt={6} pb={12}>
           <Heading>Current state</Heading>
           <Text fontWeight="semibold" fontSize="lg" mb={4}>
-            Last updated : {format(new Date(data.now.updatedAt), "dd MMM yyyy")}
+            Last updated : {data.now?.updatedAt && format(new Date(data.now.updatedAt), "dd MMM yyyy")}
           </Text>
           <ReactMarkdown
             components={{
@@ -84,7 +85,7 @@ const Now: NextPage<NowPageProps> = ({ data }) => {
             }}
             skipHtml
           >
-            {data.now.content}
+            {data.now?.content || ""}
           </ReactMarkdown>
         </Flex>
       </SinglePageContent>

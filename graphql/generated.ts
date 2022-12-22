@@ -75,6 +75,8 @@ export type BlogModelFilter = {
 };
 
 export enum BlogModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
   FirstPublishedAtAsc = "_firstPublishedAt_ASC",
   FirstPublishedAtDesc = "_firstPublishedAt_DESC",
   IsValidAsc = "_isValid_ASC",
@@ -87,10 +89,10 @@ export enum BlogModelOrderBy {
   StatusDesc = "_status_DESC",
   UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
   UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
   CategoriesAsc = "categories_ASC",
   CategoriesDesc = "categories_DESC",
-  CreatedAtAsc = "createdAt_ASC",
-  CreatedAtDesc = "createdAt_DESC",
   DateAsc = "date_ASC",
   DateDesc = "date_DESC",
   ExcerptAsc = "excerpt_ASC",
@@ -99,8 +101,6 @@ export enum BlogModelOrderBy {
   IdDesc = "id_DESC",
   TitleAsc = "title_ASC",
   TitleDesc = "title_DESC",
-  UpdatedAtAsc = "updatedAt_ASC",
-  UpdatedAtDesc = "updatedAt_DESC",
 }
 
 /** Record of type Blog (blog) */
@@ -1794,6 +1794,8 @@ export enum LogListModelOrderBy {
   StatusDesc = "_status_DESC",
   UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
   UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
   ContentAsc = "content_ASC",
   ContentDesc = "content_DESC",
   CreatedAtAsc = "createdAt_ASC",
@@ -1802,8 +1804,6 @@ export enum LogListModelOrderBy {
   DateDesc = "date_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
-  UpdatedAtAsc = "updatedAt_ASC",
-  UpdatedAtDesc = "updatedAt_DESC",
 }
 
 /** Record of type Logs (log_list) */
@@ -2758,7 +2758,10 @@ export type SingleWorkQuery = {
 
 export type NowPageQueryVariables = Exact<{ [key: string]: never }>;
 
-export type NowPageQuery = { __typename?: "Query"; now?: { __typename?: "NowRecord"; content?: string | null } | null };
+export type NowPageQuery = {
+  __typename?: "Query";
+  now?: { __typename?: "NowRecord"; updatedAt: string; content?: string | null } | null;
+};
 
 export type AboutPageQueryVariables = Exact<{ [key: string]: never }>;
 
@@ -3087,7 +3090,10 @@ export const NowPageDocument = {
             name: { kind: "Name", value: "now" },
             selectionSet: {
               kind: "SelectionSet",
-              selections: [{ kind: "Field", name: { kind: "Name", value: "content" } }],
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "updatedAt" } },
+                { kind: "Field", name: { kind: "Name", value: "content" } },
+              ],
             },
           },
         ],

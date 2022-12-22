@@ -76,6 +76,7 @@ query SingleWork($slug: String) {
 }
 query NowPage {
   now {
+    updatedAt
     content
   }
 }
