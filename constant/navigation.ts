@@ -4,4 +4,5 @@ export const NAVIGATION = [
   { title: "now", path: "/now" },
   { title: "blog", path: "/blog" },
   { title: "works", path: "/works" },
+  { title: "shots", path: "/shots" },
 ];
