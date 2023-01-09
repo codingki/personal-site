@@ -5,18 +5,47 @@ import { ShotsPageDocument } from "graphql/generated";
 import { request } from "lib/request";
 import type { NextPage } from "next";
 import { NextSeo } from "next-seo";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export interface ShotsPageProps {
   data: ShotsPageQuery;
 }
 export const Shots: NextPage<ShotsPageProps> = ({ data }) => {
-  const [selected, setSelected] = useState<{ id: string; imagePath: string } | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<string | null>(null);
   const { isOpen, onOpen, onClose } = useDisclosure({
     onClose: () => {
-      setSelected(null);
+      setSelectedIndex(null);
     },
   });
+
+  const shots = data.allShotsAnalogs[0]?.shots;
+
+  const keyPress = (e: KeyboardEvent) => {
+    // left
+    if (e.key === "ArrowLeft") {
+      if (Number(selectedIndex) !== 0) {
+        setSelectedIndex(String(Number(selectedIndex) - 1));
+      }
+    }
+    // right
+    if (e.key === "ArrowRight") {
+      if (Number(selectedIndex) !== Number(shots?.length) - 1) {
+        setSelectedIndex(String(Number(selectedIndex) + 1));
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      window.addEventListener("keydown", keyPress);
+    }
+
+    return () => {
+      window.removeEventListener("keydown", keyPress);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen, selectedIndex]);
+
   return (
     <>
       <NextSeo
@@ -46,16 +75,13 @@ export const Shots: NextPage<ShotsPageProps> = ({ data }) => {
         }}
       />
       <SimpleGrid columns={[2, 2, 3]} spacing={[4, 4, 8]}>
-        {data.allShotsAnalogs[0]?.shots.map((item) => {
+        {shots?.map((item, index) => {
           return (
             <CardShell
               key={item.filename}
               p="2"
               onClick={() => {
-                setSelected({
-                  id: item.filename,
-                  imagePath: item.url,
-                });
+                setSelectedIndex(String(index));
                 onOpen();
               }}
             >
@@ -81,13 +107,13 @@ export const Shots: NextPage<ShotsPageProps> = ({ data }) => {
             <Image
               fallbackSrc="image-loading.jpg"
               alt="11"
-              src={selected?.imagePath || ""}
+              src={selectedIndex ? shots?.[Number(selectedIndex)]?.url : ""}
               verticalAlign="middle"
               width="100%"
               className="handDrawnBorderLight"
             />
             <Text fontWeight="semibold" textAlign="center" fontSize="lg">
-              {selected?.id}
+              {selectedIndex ? shots?.[Number(selectedIndex)]?.filename : "Not found"}
             </Text>
           </CardShell>
         </ModalContent>
