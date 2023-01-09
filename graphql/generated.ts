@@ -367,6 +367,20 @@ export type FileFilter = {
   notIn?: InputMaybe<Array<InputMaybe<Scalars["UploadId"]>>>;
 };
 
+/** Specifies how to filter Multiple files/images field */
+export type GalleryFilter = {
+  /** Filter records that have all of the specified uploads. The specified values must be Upload IDs */
+  allIn?: InputMaybe<Array<InputMaybe<Scalars["UploadId"]>>>;
+  /** Filter records that have one of the specified uploads. The specified values must be Upload IDs */
+  anyIn?: InputMaybe<Array<InputMaybe<Scalars["UploadId"]>>>;
+  /** Search for records with an exact match. The specified values must be Upload IDs */
+  eq?: InputMaybe<Array<InputMaybe<Scalars["UploadId"]>>>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars["BooleanType"]>;
+  /** Filter records that do not have any of the specified uploads. The specified values must be Upload IDs */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["UploadId"]>>>;
+};
+
 export type GlobalSeoField = {
   __typename?: "GlobalSeoField";
   facebookPageUrl?: Maybe<Scalars["String"]>;
@@ -1782,6 +1796,8 @@ export type LogListModelFilter = {
 };
 
 export enum LogListModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
   FirstPublishedAtAsc = "_firstPublishedAt_ASC",
   FirstPublishedAtDesc = "_firstPublishedAt_DESC",
   IsValidAsc = "_isValid_ASC",
@@ -1798,8 +1814,6 @@ export enum LogListModelOrderBy {
   UpdatedAtDesc = "_updatedAt_DESC",
   ContentAsc = "content_ASC",
   ContentDesc = "content_DESC",
-  CreatedAtAsc = "createdAt_ASC",
-  CreatedAtDesc = "createdAt_DESC",
   DateAsc = "date_ASC",
   DateDesc = "date_DESC",
   IdAsc = "id_ASC",
@@ -1901,6 +1915,8 @@ export type Query = {
   _allBlogsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allLogListsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allShotsAnalogsMeta: CollectionMetadata;
   /** Returns meta information regarding an assets collection */
   _allUploadsMeta?: Maybe<CollectionMetadata>;
   /** Returns meta information regarding a record collection */
@@ -1913,6 +1929,8 @@ export type Query = {
   allBlogs: Array<BlogRecord>;
   /** Returns a collection of records */
   allLogLists: Array<LogListRecord>;
+  /** Returns a collection of records */
+  allShotsAnalogs: Array<ShotsAnalogRecord>;
   /** Returns a collection of assets */
   allUploads: Array<FileField>;
   /** Returns a collection of records */
@@ -1923,6 +1941,8 @@ export type Query = {
   logList?: Maybe<LogListRecord>;
   /** Returns the single instance record */
   now?: Maybe<NowRecord>;
+  /** Returns a specific record */
+  shotsAnalog?: Maybe<ShotsAnalogRecord>;
   /** Returns a specific asset */
   upload?: Maybe<FileField>;
   /** Returns a specific record */
@@ -1940,6 +1960,13 @@ export type Query_AllBlogsMetaArgs = {
 export type Query_AllLogListsMetaArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<LogListModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllShotsAnalogsMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ShotsAnalogModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -1989,6 +2016,16 @@ export type QueryAllLogListsArgs = {
 };
 
 /** The query root for this schema */
+export type QueryAllShotsAnalogsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ShotsAnalogModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ShotsAnalogModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]>;
+};
+
+/** The query root for this schema */
 export type QueryAllUploadsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<UploadFilter>;
@@ -2028,6 +2065,14 @@ export type QueryLogListArgs = {
 export type QueryNowArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type QueryShotsAnalogArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ShotsAnalogModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ShotsAnalogModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -2105,6 +2150,68 @@ export type SeoField = {
   image?: Maybe<FileField>;
   title?: Maybe<Scalars["String"]>;
   twitterCard?: Maybe<Scalars["String"]>;
+};
+
+export type ShotsAnalogModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<ShotsAnalogModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  createdAt?: InputMaybe<CreatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  shots?: InputMaybe<GalleryFilter>;
+  updatedAt?: InputMaybe<UpdatedAtFilter>;
+};
+
+export enum ShotsAnalogModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+}
+
+/** Record of type shots (shots_analog) */
+export type ShotsAnalogRecord = RecordInterface & {
+  __typename?: "ShotsAnalogRecord";
+  _createdAt: Scalars["DateTime"];
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]>;
+  _isValid: Scalars["BooleanType"];
+  _modelApiKey: Scalars["String"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]>;
+  _updatedAt: Scalars["DateTime"];
+  createdAt: Scalars["DateTime"];
+  id: Scalars["ItemId"];
+  shots: Array<FileField>;
+  updatedAt: Scalars["DateTime"];
+};
+
+/** Record of type shots (shots_analog) */
+export type ShotsAnalogRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 export type Site = {
@@ -2770,6 +2877,17 @@ export type AboutPageQuery = {
   about?: { __typename?: "AboutRecord"; content?: string | null } | null;
 };
 
+export type ShotsPageQueryVariables = Exact<{ [key: string]: never }>;
+
+export type ShotsPageQuery = {
+  __typename?: "Query";
+  allShotsAnalogs: Array<{
+    __typename?: "ShotsAnalogRecord";
+    id: string;
+    shots: Array<{ __typename?: "FileField"; filename: string; url: string }>;
+  }>;
+};
+
 export const HomeQueryDocument = {
   kind: "Document",
   definitions: [
@@ -3124,3 +3242,42 @@ export const AboutPageDocument = {
     },
   ],
 } as unknown as DocumentNode<AboutPageQuery, AboutPageQueryVariables>;
+export const ShotsPageDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "ShotsPage" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "allShotsAnalogs" },
+            arguments: [
+              { kind: "Argument", name: { kind: "Name", value: "first" }, value: { kind: "IntValue", value: "1" } },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "shots" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "filename" } },
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ShotsPageQuery, ShotsPageQueryVariables>;
