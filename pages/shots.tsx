@@ -1,12 +1,14 @@
 import { Image, Modal, ModalContent, ModalOverlay, SimpleGrid, Text, useDisclosure } from "@chakra-ui/react";
 import { CardShell } from "components/Card";
-import { getShots } from "lib/shots";
+import type { ShotsPageQuery } from "graphql/generated";
+import { ShotsPageDocument } from "graphql/generated";
+import { request } from "lib/request";
 import type { NextPage } from "next";
 import { NextSeo } from "next-seo";
 import { useState } from "react";
 
 export interface ShotsPageProps {
-  data: { id: string; imagePath: string }[];
+  data: ShotsPageQuery;
 }
 export const Shots: NextPage<ShotsPageProps> = ({ data }) => {
   const [selected, setSelected] = useState<{ id: string; imagePath: string } | null>(null);
@@ -44,26 +46,29 @@ export const Shots: NextPage<ShotsPageProps> = ({ data }) => {
         }}
       />
       <SimpleGrid columns={[2, 2, 3]} spacing={[4, 4, 8]}>
-        {data.map((item) => {
+        {data.allShotsAnalogs[0]?.shots.map((item) => {
           return (
             <CardShell
-              key={item.id}
+              key={item.filename}
               p="2"
               onClick={() => {
-                setSelected(item);
+                setSelected({
+                  id: item.filename,
+                  imagePath: item.url,
+                });
                 onOpen();
               }}
             >
               <Image
-                alt={item.id}
-                src={item.imagePath}
+                alt={item.filename}
+                src={item.url}
                 verticalAlign="middle"
                 width="100%"
                 fallbackSrc="image-loading.jpg"
                 className="handDrawnBorderLight"
               />
               <Text fontWeight="semibold" textAlign="center" fontSize="lg">
-                {item.id}
+                {item.filename}
               </Text>
             </CardShell>
           );
@@ -91,8 +96,8 @@ export const Shots: NextPage<ShotsPageProps> = ({ data }) => {
   );
 };
 
-export const getStaticProps = () => {
-  const data = getShots();
+export const getStaticProps = async () => {
+  const data = await request(ShotsPageDocument);
   return {
     props: {
       data,

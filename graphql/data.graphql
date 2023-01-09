@@ -86,3 +86,13 @@ query AboutPage {
     content
   }
 }
+
+query ShotsPage {
+  allShotsAnalogs(first: 1) {
+    id
+    shots {
+      filename
+      url
+    }
+  }
+}
