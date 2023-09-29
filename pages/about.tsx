@@ -3,7 +3,7 @@ import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 import { AboutPageDocument } from "graphql/generated";
 import { request } from "lib/request";
 import type { GetStaticProps, NextPage } from "next";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { NextSeo } from "next-seo";
 import ReactMarkdown from "react-markdown";
 import { Tweet } from "react-twitter-widgets";

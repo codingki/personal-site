@@ -1,5 +1,5 @@
 import { Box, Flex, Heading, Stack, Text } from "@chakra-ui/react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import { SOCIAL_LINKS } from "../constant/social";
 import { SocialButton } from "./Button";

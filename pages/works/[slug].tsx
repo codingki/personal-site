@@ -5,7 +5,7 @@ import type { SingleWorkQuery } from "graphql/generated";
 import { AllworkDocument, SingleWorkDocument } from "graphql/generated";
 import { request } from "lib/request";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import NextLink from "next/link";
 import { NextSeo } from "next-seo";
 import ReactMarkdown from "react-markdown";
