@@ -38,7 +38,7 @@
     "react-twitter-widgets": "^1.10.0"
   },
   "devDependencies": {
-    "@strangelovelabs/style-guide": "0.0.4",
+    "@graz-sh/style-guide": "0.0.4",
     "@types/node": "^16",
     "@types/react": "^18",
     "@types/react-dom": "18.0.6",
@@ -51,5 +51,5 @@
       "eslint --fix"
     ]
   },
-  "prettier": "@strangelovelabs/style-guide/prettier"
+  "prettier": "@graz-sh/style-guide/prettier"
 }
