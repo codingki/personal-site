@@ -1,11 +1,11 @@
 import { ImageResponse } from "@vercel/og";
-import { NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 
 export const config = {
   runtime: "edge",
 };
 
-export default async function handler(request: NextRequest) {
+export default async (request: NextRequest) => {
   const maliBold = await fetch(new URL("../../assets/Mali-Bold.ttf", import.meta.url)).then((res) => res.arrayBuffer());
   const maliSemiBold = await fetch(new URL("../../assets/Mali-SemiBold.ttf", import.meta.url)).then((res) =>
     res.arrayBuffer(),
@@ -94,4 +94,4 @@ export default async function handler(request: NextRequest) {
       ],
     },
   );
-}
+};

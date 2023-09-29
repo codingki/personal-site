@@ -3,7 +3,6 @@ import { NextSeo } from "next-seo";
 
 export const SEO = (props: NextSeoProps) => (
   <NextSeo
-    title="Nur Fikri | Front-end Developer"
     description="Im a guy that can code and design, but internet makes me can do anything. Crafting beautiful apps with React and ❤️"
     openGraph={{
       url: "https://kikiding.space/",
@@ -17,6 +16,7 @@ export const SEO = (props: NextSeoProps) => (
       ],
       site_name: "Kikiding.space",
     }}
+    title="Nur Fikri | Front-end Developer"
     twitter={{
       handle: "@kikiding",
       site: "@kikiding",

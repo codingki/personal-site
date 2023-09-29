@@ -1,8 +1,8 @@
 import type { StackProps } from "@chakra-ui/react";
-import { Flex, Stack, Text } from "@chakra-ui/react";
+import { Flex, Link, Stack, Text } from "@chakra-ui/react";
 import { format } from "date-fns";
 import type { SingleBlogQuery, SingleWorkQuery } from "graphql/generated";
-import Link from "next/link";
+import NextLink from "next/link";
 import React from "react";
 
 import { MyButton } from "./Button";
@@ -18,10 +18,10 @@ export const HCardLayoutList = ({
 }) => (
   <Stack spacing="4">
     <Flex align="center" justifyContent="space-between">
-      <MyButton bgColor="blue" color="paper" as="div">
+      <MyButton as="div" bgColor="blue" color="paper">
         {title}
       </MyButton>
-      <Link href={link} passHref>
+      <Link as={NextLink} href={link} passHref>
         <MyButton bgColor="paper">View All</MyButton>
       </Link>
     </Flex>
@@ -43,16 +43,16 @@ export const VCardLayoutList = ({
 }) => (
   <Stack spacing="4">
     <Flex align="center" justifyContent="space-between">
-      <MyButton bgColor="blue" color="paper" as="div">
+      <MyButton as="div" bgColor="blue" color="paper">
         {title}
       </MyButton>
-      {!disableViewAll && link && (
-        <Link href={link} passHref>
+      {!disableViewAll && link ? (
+        <Link as={NextLink} href={link} passHref>
           <MyButton bgColor="paper" color="black">
             View All
           </MyButton>
         </Link>
-      )}
+      ) : null}
     </Flex>
     <Stack direction="column" spacing={4}>
       {children}
@@ -61,17 +61,17 @@ export const VCardLayoutList = ({
 );
 
 export const CardShell: React.FC<StackProps> = (props) => (
-  <Stack w="full" bg="paper" className="handDrawnBorder" p="4" spacing={1} {...props} />
+  <Stack bg="paper" className="handDrawnBorder" p="4" spacing={1} w="full" {...props} />
 );
 
 export const BlogCard = ({ item }: { item: SingleBlogQuery["blog"] }) => (
-  <Link as={`/blog/${item?.slug}`} href="/blog/[slug]" passHref>
-    <CardShell as="a">
-      <Text fontWeight="bold" fontSize={["xl", "2xl"]} noOfLines={1}>
+  <Link as={NextLink} href={`/blog/${item?.slug}`} passHref>
+    <CardShell>
+      <Text fontSize={["xl", "2xl"]} fontWeight="bold" noOfLines={1}>
         {item?.title}
       </Text>
       <Text>
-        {item?.date && format(new Date(item.date), "dd MMM yyyy")} | {item?.categories}
+        {item?.date ? format(new Date(item.date), "dd MMM yyyy") : null} | {item?.categories}
       </Text>
       <Text noOfLines={3}>{item?.excerpt}</Text>
     </CardShell>
@@ -79,15 +79,15 @@ export const BlogCard = ({ item }: { item: SingleBlogQuery["blog"] }) => (
 );
 
 export const WorkCard = ({ item }: { item: SingleWorkQuery["work"] }) => (
-  <Link as={`/works/${item?.slug}`} href="/works/[slug]" passHref>
-    <CardShell as="a">
-      <Text fontWeight="bold" fontSize={["xl", "2xl"]} noOfLines={1}>
+  <Link as={NextLink} href={`/works/${item?.slug}`} passHref>
+    <CardShell>
+      <Text fontSize={["xl", "2xl"]} fontWeight="bold" noOfLines={1}>
         {item?.title}
       </Text>
       <Text noOfLines={3}>{item?.excerpt}</Text>
-      <Flex wrap="wrap" direction="row" gap={1} pt={2}>
+      <Flex direction="row" gap={1} pt={2} wrap="wrap">
         {item?.categories?.split(", ").map((cat) => (
-          <MyButton key={cat} px={2} py={0.5} bgColor="orange" color="paper" fontSize="sm">
+          <MyButton key={cat} bgColor="orange" color="paper" fontSize="sm" px={2} py={0.5}>
             {cat}
           </MyButton>
         ))}

@@ -1,24 +1,11 @@
 // @ts-check
 
-const { getTsconfigPath } = require("@graz-sh/style-guide/eslint/helpers");
+const { extendEslint } = require("@graz-sh/style-guide");
 
-/** @type {import("eslint").Linter.Config} */
-const eslintConfig = {
-  extends: [
-    require.resolve("@graz-sh/style-guide/eslint/browser-node"),
-    require.resolve("@graz-sh/style-guide/eslint/react"),
-    require.resolve("@graz-sh/style-guide/eslint/next"),
-    require.resolve("@graz-sh/style-guide/eslint/typescript"),
-  ],
-  ignorePatterns: [".next", "node_modules", "out"],
-  parserOptions: {
-    project: getTsconfigPath(),
-  },
+module.exports = extendEslint(["browser-node", "react", "typescript", "tsup"], {
   rules: {
-    "@typescript-eslint/ban-ts-ignore": "off",
-    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-non-null-assertion": "warn",
+    "react/no-unstable-nested-components": "off",
   },
   root: true,
-};
-
-module.exports = eslintConfig;
+});

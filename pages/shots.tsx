@@ -49,7 +49,6 @@ export const Shots: NextPage<ShotsPageProps> = ({ data }) => {
   return (
     <>
       <NextSeo
-        title="Shots | Nur Fikri"
         description="Shots by Kiki"
         openGraph={{
           url: "https://kikiding.space/blog",
@@ -60,14 +59,15 @@ export const Shots: NextPage<ShotsPageProps> = ({ data }) => {
               url: encodeURI(
                 "https://kikiding.space/api/social-image?title=Shots&description=Shots by Kiki&path=https://kikiding.space/shots",
               ),
-              width: 1024,
-              height: 512,
+              width: 1200,
+              height: 630,
               alt: "kikiding.space",
               type: "image/png",
             },
           ],
           site_name: "Kikiding.space",
         }}
+        title="Shots | Nur Fikri"
         twitter={{
           handle: "@kikiding",
           site: "@kikiding",
@@ -79,40 +79,40 @@ export const Shots: NextPage<ShotsPageProps> = ({ data }) => {
           return (
             <CardShell
               key={item.filename}
-              p="2"
               onClick={() => {
                 setSelectedIndex(String(index));
                 onOpen();
               }}
+              p="2"
             >
               <Image
                 alt={item.filename}
+                className="handDrawnBorderLight"
+                fallbackSrc="image-loading.jpg"
                 src={item.url}
                 verticalAlign="middle"
                 width="100%"
-                fallbackSrc="image-loading.jpg"
-                className="handDrawnBorderLight"
               />
-              <Text fontWeight="semibold" textAlign="center" fontSize="lg">
+              <Text fontSize="lg" fontWeight="semibold" textAlign="center">
                 {item.filename}
               </Text>
             </CardShell>
           );
         })}
       </SimpleGrid>
-      <Modal isOpen={isOpen} onClose={onClose} size="5xl" isCentered>
+      <Modal isCentered isOpen={isOpen} onClose={onClose} size="5xl">
         <ModalOverlay />
         <ModalContent backgroundColor="transparent" px={4}>
-          <CardShell p="2" onClick={onOpen}>
+          <CardShell onClick={onOpen} p="2">
             <Image
-              fallbackSrc="image-loading.jpg"
               alt="11"
+              className="handDrawnBorderLight"
+              fallbackSrc="image-loading.jpg"
               src={selectedIndex ? shots?.[Number(selectedIndex)]?.url : ""}
               verticalAlign="middle"
               width="100%"
-              className="handDrawnBorderLight"
             />
-            <Text fontWeight="semibold" textAlign="center" fontSize="lg">
+            <Text fontSize="lg" fontWeight="semibold" textAlign="center">
               {selectedIndex ? shots?.[Number(selectedIndex)]?.filename : "Not found"}
             </Text>
           </CardShell>
@@ -123,7 +123,7 @@ export const Shots: NextPage<ShotsPageProps> = ({ data }) => {
 };
 
 export const getStaticProps = async () => {
-  const data = await request(ShotsPageDocument);
+  const data = await request<ShotsPageQuery>(ShotsPageDocument);
   return {
     props: {
       data,

@@ -6,11 +6,11 @@ export const MyButton: React.FC<CenterProps> = (props) => (
   <Center
     as="button"
     className="handDrawnBorderLight"
-    px={["2.5", 4]}
-    py="1"
-    gap="2"
     fontSize={["md", "xl"]}
     fontWeight="bold"
+    gap="2"
+    px={["2.5", 4]}
+    py="1"
     {...props}
   />
 );

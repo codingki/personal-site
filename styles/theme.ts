@@ -1,6 +1,5 @@
 import type { ThemeOverride } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
-import { mode } from "@chakra-ui/theme-tools";
 
 export const theme = extendTheme({
   fonts: {
@@ -15,18 +14,18 @@ export const theme = extendTheme({
     black: "#0a0a0a",
   },
   styles: {
-    global: (props) => ({
+    global: () => ({
       body: {
         fontFamily: "body",
-        color: mode("gray.800", "whiteAlpha.900")(props),
-        bg: mode("yellow", "gray.800")(props),
+        color: "gray.800",
+        bg: "yellow",
         lineHeight: "base",
       },
       "*::placeholder": {
-        color: mode("gray.400", "whiteAlpha.400")(props),
+        color: "gray.400",
       },
       "*, *::before, &::after": {
-        borderColor: mode("gray.200", "whiteAlpha.300")(props),
+        borderColor: "gray.200",
         wordWrap: "break-word",
       },
       ".handDrawnBorder": {

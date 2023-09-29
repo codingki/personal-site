@@ -19,7 +19,6 @@ const About: NextPage<AboutPageProps> = ({ data }) => {
   return (
     <>
       <NextSeo
-        title="About Me | Nur Fikri"
         description="Know me more"
         openGraph={{
           url: "https://kikiding.space/about",
@@ -30,14 +29,15 @@ const About: NextPage<AboutPageProps> = ({ data }) => {
               url: encodeURI(
                 "https://kikiding.space/api/social-image?title=About Me&description=Know me more&path=https://kikiding.space/about",
               ),
-              width: 1024,
-              height: 512,
+              width: 1200,
+              height: 630,
               alt: "kikiding.space",
               type: "image/png",
             },
           ],
           site_name: "Kikiding.space",
         }}
+        title="About Me | Nur Fikri"
         twitter={{
           handle: "@kikiding",
           site: "@kikiding",
@@ -45,18 +45,20 @@ const About: NextPage<AboutPageProps> = ({ data }) => {
         }}
       />
       <SinglePageContent minH={["75vh", "65vh"]} p={0}>
-        <Box minH={[250, 400, 480]} position="relative" className="handDrawnBorder" m={4} mb={0}>
-          <Image
-            alt="actual me"
-            src="/kiki.jpg"
-            fill
-            sizes="100vw"
-            style={{
-              objectFit: "cover",
-            }}
-          />
-        </Box>
-        <Flex direction="column" gap={2} p={4} pt={2} pb={12}>
+        <Center mb="24px">
+          <Box className="handDrawnBorder" h="200px" m={4} mb={0} position="relative" w="200px">
+            <Image
+              alt="actual me"
+              fill
+              sizes="100vw"
+              src="/kiki.jpg"
+              style={{
+                objectFit: "cover",
+              }}
+            />
+          </Box>
+        </Center>
+        <Flex direction="column" gap={2} p={4} pb={12} pt={2}>
           <ReactMarkdown
             components={{
               ...ChakraUIRenderer(),
@@ -66,29 +68,29 @@ const About: NextPage<AboutPageProps> = ({ data }) => {
                     <Center my={2}>
                       <Box minW={["100%", "100%", "500px"]}>
                         <Tweet
-                          tweetId={String(props.href.split("status/")[1]?.split("?")[0])}
                           renderError={(e) => {
                             return <Text color="red">{e.message}</Text>;
                           }}
+                          tweetId={String(props.href.split("status/")[1]?.split("?")[0])}
                         />
                       </Box>
                     </Center>
                   );
                 }
                 return (
-                  <Link href={props.href || ""} color="blue" fontWeight="semibold">
+                  <Link color="blue" fontWeight="semibold" href={props.href || ""}>
                     {props.children}
                   </Link>
                 );
               },
               img: (props) => {
                 return (
-                  <Box minH={[250, 400, 480]} position="relative" className="handDrawnBorderLight">
+                  <Box className="handDrawnBorderLight" minH={[250, 400, 480]} position="relative">
                     <Image
                       alt="about"
-                      src={String(props.src)}
                       fill
                       sizes="100vw"
+                      src={String(props.src)}
                       style={{
                         objectFit: "cover",
                       }}

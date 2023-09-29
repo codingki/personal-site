@@ -14,7 +14,6 @@ const Works: NextPage<WorksPageProps> = ({ data }) => {
   return (
     <>
       <NextSeo
-        title="My Works | Nur Fikri"
         description="Projects that I've touched"
         openGraph={{
           url: "https://kikiding.space/works",
@@ -25,21 +24,22 @@ const Works: NextPage<WorksPageProps> = ({ data }) => {
               url: encodeURI(
                 "https://kikiding.space/api/social-image?title=My Works&description=Project that I've touched&path=https://kikiding.space/works",
               ),
-              width: 1024,
-              height: 512,
+              width: 1200,
+              height: 630,
               alt: "kikiding.space",
               type: "image/png",
             },
           ],
           site_name: "Kikiding.space",
         }}
+        title="My Works | Nur Fikri"
         twitter={{
           handle: "@kikiding",
           site: "@kikiding",
           cardType: "summary_large_image",
         }}
       />
-      <VCardLayoutList title="Recent Works" disableViewAll>
+      <VCardLayoutList disableViewAll title="Recent Works">
         {data.allWorks.map((item) => (
           <WorkCard key={item.id} item={item} />
         ))}
@@ -49,7 +49,7 @@ const Works: NextPage<WorksPageProps> = ({ data }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await request(AllworkDocument);
+  const data = await request<AllworkQuery>(AllworkDocument);
   return {
     props: { data },
   };

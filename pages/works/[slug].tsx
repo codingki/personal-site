@@ -1,7 +1,7 @@
 import { Twitter } from "@chakra-icons/bootstrap";
 import { Box, Center, Flex, Heading, Link, Text } from "@chakra-ui/react";
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
-import type { SingleWorkQuery } from "graphql/generated";
+import type { AllworkQuery, SingleWorkQuery } from "graphql/generated";
 import { AllworkDocument, SingleWorkDocument } from "graphql/generated";
 import { request } from "lib/request";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
@@ -22,7 +22,6 @@ const SingleWork: NextPage<SingleWorkPageProps> = ({ data }) => {
   return (
     <>
       <NextSeo
-        title={data.work?.title || ""}
         description={data.work?.excerpt || ""}
         openGraph={{
           url: `https://kikiding.space/works/${data.work?.slug}`,
@@ -33,14 +32,15 @@ const SingleWork: NextPage<SingleWorkPageProps> = ({ data }) => {
               url: encodeURI(
                 `https://kikiding.space/api/social-image?title=${data.work?.title}&description=${data.work?.excerpt}&path=https://kikiding.space/works/${data.work?.slug}`,
               ),
-              width: 1024,
-              height: 512,
+              width: 1200,
+              height: 630,
               alt: data.work?.title || "",
               type: "image/png",
             },
           ],
           site_name: "Kikiding.space",
         }}
+        title={data.work?.title || ""}
         twitter={{
           handle: "@kikiding",
           site: "@kikiding",
@@ -48,39 +48,39 @@ const SingleWork: NextPage<SingleWorkPageProps> = ({ data }) => {
         }}
       />
       <SinglePageContent minH="75vh" p={0}>
-        {data.work?.image && (
-          <Box minH={[250, 400]} position="relative" className="handDrawnBorder" m={4} mb={0}>
+        {data.work?.image ? (
+          <Box className="handDrawnBorder" m={4} mb={0} minH={[250, 400]} position="relative">
             <Image
               alt={data.work.title || ""}
-              src={data.work.image.url}
               fill
               sizes="100vw"
+              src={data.work.image.url}
               style={{
                 objectFit: "cover",
               }}
             />
           </Box>
-        )}
+        ) : null}
 
-        <Flex direction="column" p={4} pt={4} pb={12} gap={4}>
+        <Flex direction="column" gap={4} p={4} pb={12} pt={4}>
           <Heading>{data.work?.title}</Heading>
-          <Flex wrap="wrap" gap={2}>
+          <Flex gap={2} wrap="wrap">
             {data.work?.categories?.split(", ").map((item) => (
               <MyButton
                 key={item}
+                as="div"
                 bgColor="orange"
                 color="paper"
+                fontSize={["md"]}
                 px="2"
                 py="1"
                 textTransform="capitalize"
-                fontSize={["md"]}
-                as="div"
               >
                 {item}
               </MyButton>
             ))}
           </Flex>
-          <Text fontWeight="semibold" fontSize="xl">
+          <Text fontSize="xl" fontWeight="semibold">
             About the project
           </Text>
           <ReactMarkdown
@@ -92,29 +92,29 @@ const SingleWork: NextPage<SingleWorkPageProps> = ({ data }) => {
                     <Center my={2}>
                       <Box minW={["100%", "100%", "500px"]}>
                         <Tweet
-                          tweetId={String(props.href.split("status/")[1]?.split("?")[0])}
                           renderError={(error) => {
                             return <Text>{error.message}</Text>;
                           }}
+                          tweetId={String(props.href.split("status/")[1]?.split("?")[0])}
                         />
                       </Box>
                     </Center>
                   );
                 }
                 return (
-                  <Link href={props.href || ""} color="blue" fontWeight="semibold">
+                  <Link color="blue" fontWeight="semibold" href={props.href || ""}>
                     {props.children}
                   </Link>
                 );
               },
               img: (props) => {
                 return (
-                  <Box minH={[250, 400, 480]} position="relative" className="handDrawnBorderLight">
+                  <Box className="handDrawnBorderLight" minH={[250, 400, 480]} position="relative">
                     <Image
                       alt={data.work?.title || ""}
-                      src={String(props.src)}
                       fill
                       sizes="100vw"
+                      src={String(props.src)}
                       style={{
                         objectFit: "cover",
                       }}
@@ -127,45 +127,45 @@ const SingleWork: NextPage<SingleWorkPageProps> = ({ data }) => {
           >
             {data.work?.about || ""}
           </ReactMarkdown>
-          <Text fontWeight="semibold" fontSize="xl">
+          <Text fontSize="xl" fontWeight="semibold">
             Technology used :
           </Text>
-          <Flex wrap="wrap" gap={2}>
+          <Flex gap={2} wrap="wrap">
             {data.work?.technologyUsed?.split(", ").map((item) => (
               <MyButton
                 key={item}
+                as="div"
                 bgColor="blue"
                 color="paper"
+                fontSize={["md"]}
                 px="2"
                 py="1"
                 textTransform="capitalize"
-                fontSize={["md"]}
-                as="div"
               >
                 {item}
               </MyButton>
             ))}
           </Flex>
-          {data.work?.deployment && (
-            <Text fontWeight="semibold" fontSize="xl">
+          {data.work?.deployment ? (
+            <Text fontSize="xl" fontWeight="semibold">
               Links :
             </Text>
-          )}
+          ) : null}
 
-          <Flex wrap="wrap" gap={2}>
+          <Flex gap={2} wrap="wrap">
             {data.work?.deployment?.split(", ").map((item) => {
               const val = item.split(": ");
               const txt = `${val[0]?.charAt(0).toUpperCase()} ${val[0]?.slice(1)}`;
               return (
-                <a key={val[1]} href={val[1]} target="_blank" rel="noopener">
+                <a key={val[1]} href={val[1]} rel="noopener" target="_blank">
                   <MyButton
+                    as="a"
                     bgColor="paper"
                     color="black"
+                    fontSize={["md"]}
                     px="2"
                     py="1"
                     textTransform="capitalize"
-                    fontSize={["md"]}
-                    as="a"
                   >
                     {txt}
                   </MyButton>
@@ -178,13 +178,14 @@ const SingleWork: NextPage<SingleWorkPageProps> = ({ data }) => {
             passHref
           >
             <SocialButton
+              alignSelf="flex-end"
+              as="a"
               bgColor="twitter.500"
               color="paper"
-              as="a"
-              alignSelf="flex-end"
               fontSize="md"
-              py={0.5}
               px={3}
+              py={0.5}
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-expect-error
               target="_blank"
             >
@@ -199,7 +200,7 @@ const SingleWork: NextPage<SingleWorkPageProps> = ({ data }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const workRes = await request(AllworkDocument);
+  const workRes = await request<AllworkQuery>(AllworkDocument);
   const allWorks = workRes.allWorks;
   return {
     paths: allWorks.map((post) => `/works/${post.slug}`),

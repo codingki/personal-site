@@ -6,10 +6,10 @@ import { SocialButton } from "./Button";
 
 export const Header = () => {
   return (
-    <Stack direction="row" w="full" bg="paper" align="flex-end" className="handDrawnBorder">
+    <Stack align="flex-end" bg="paper" className="handDrawnBorder" direction="row" w="full">
       <Stack p="8" px={["4", "8", "8"]}>
         <Heading>Hi👋 I&apos;m Kiki</Heading>
-        <Text fontWeight="bold" fontSize={["xl", "2xl"]}>
+        <Text fontSize={["xl", "2xl"]} fontWeight="bold">
           Creative Technologist
         </Text>
         <Text fontSize={["lg", "xl"]}>
@@ -17,7 +17,7 @@ export const Header = () => {
         </Text>
         <Flex flexWrap="wrap" gap={2} pt="4">
           {SOCIAL_LINKS.map((item) => (
-            <a href={item.link} key={item.title} target="_blank" rel="noopener">
+            <a key={item.title} href={item.link} rel="noopener" target="_blank">
               <SocialButton arial-label={item.title} as="button" fontSize="md" px={3} py={1}>
                 {item.icon}
               </SocialButton>
@@ -25,8 +25,8 @@ export const Header = () => {
           ))}
         </Flex>
       </Stack>
-      <Box display={["none", "none", "block"]} width={500} height={240} position="relative">
-        <Image alt="Kiki Illustrated" src="/me.png" fill sizes="100vw" />
+      <Box display={["none", "none", "block"]} height={240} position="relative" width={500}>
+        <Image alt="Kiki Illustrated" fill sizes="100vw" src="/me.png" />
       </Box>
     </Stack>
   );
