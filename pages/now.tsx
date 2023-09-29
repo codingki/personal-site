@@ -5,7 +5,7 @@ import type { NowPageQuery } from "graphql/generated";
 import { NowPageDocument } from "graphql/generated";
 import { request } from "lib/request";
 import type { GetStaticProps, NextPage } from "next";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { NextSeo } from "next-seo";
 import ReactMarkdown from "react-markdown";
 import { Tweet } from "react-twitter-widgets";
@@ -78,7 +78,15 @@ const Now: NextPage<NowPageProps> = ({ data }) => {
               img: (props) => {
                 return (
                   <Box minH={[250, 400, 480]} position="relative" className="handDrawnBorderLight">
-                    <Image alt="about" src={String(props.src)} layout="fill" objectFit="cover" />
+                    <Image
+                      alt="about"
+                      src={String(props.src)}
+                      fill
+                      sizes="100vw"
+                      style={{
+                        objectFit: "cover",
+                      }}
+                    />
                   </Box>
                 );
               },

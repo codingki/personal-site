@@ -5,7 +5,7 @@ import type { SingleWorkQuery } from "graphql/generated";
 import { AllworkDocument, SingleWorkDocument } from "graphql/generated";
 import { request } from "lib/request";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import NextLink from "next/link";
 import { NextSeo } from "next-seo";
 import ReactMarkdown from "react-markdown";
@@ -50,7 +50,15 @@ const SingleWork: NextPage<SingleWorkPageProps> = ({ data }) => {
       <SinglePageContent minH="75vh" p={0}>
         {data.work?.image && (
           <Box minH={[250, 400]} position="relative" className="handDrawnBorder" m={4} mb={0}>
-            <Image alt={data.work.title || ""} src={data.work.image.url} layout="fill" objectFit="cover" />
+            <Image
+              alt={data.work.title || ""}
+              src={data.work.image.url}
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: "cover",
+              }}
+            />
           </Box>
         )}
 
@@ -102,7 +110,15 @@ const SingleWork: NextPage<SingleWorkPageProps> = ({ data }) => {
               img: (props) => {
                 return (
                   <Box minH={[250, 400, 480]} position="relative" className="handDrawnBorderLight">
-                    <Image alt={data.work?.title || ""} src={String(props.src)} layout="fill" objectFit="cover" />
+                    <Image
+                      alt={data.work?.title || ""}
+                      src={String(props.src)}
+                      fill
+                      sizes="100vw"
+                      style={{
+                        objectFit: "cover",
+                      }}
+                    />
                   </Box>
                 );
               },

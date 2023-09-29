@@ -1,5 +1,5 @@
 import { Box, Flex, Heading, Stack, Text } from "@chakra-ui/react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 import { SOCIAL_LINKS } from "../constant/social";
 import { SocialButton } from "./Button";
@@ -26,7 +26,7 @@ export const Header = () => {
         </Flex>
       </Stack>
       <Box display={["none", "none", "block"]} width={500} height={240} position="relative">
-        <Image alt="Kiki Illustrated" src="/me.png" layout="fill" />
+        <Image alt="Kiki Illustrated" src="/me.png" fill sizes="100vw" />
       </Box>
     </Stack>
   );

@@ -6,7 +6,7 @@ import type { SingleBlogQuery } from "graphql/generated";
 import { AllBlogDocument, SingleBlogDocument } from "graphql/generated";
 import { request } from "lib/request";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import NextLink from "next/link";
 import { NextSeo } from "next-seo";
 import ReactMarkdown from "react-markdown";
@@ -101,7 +101,15 @@ const SingleBlog: NextPage<SingleBlogPageProps> = ({ data }) => {
               img: (props) => {
                 return (
                   <Box minH={[250, 400, 480]} position="relative" className="handDrawnBorderLight">
-                    <Image alt={data.blog?.title || ""} src={String(props.src)} layout="fill" objectFit="cover" />
+                    <Image
+                      alt={data.blog?.title || ""}
+                      src={String(props.src)}
+                      fill
+                      sizes="100vw"
+                      style={{
+                        objectFit: "cover",
+                      }}
+                    />
                   </Box>
                 );
               },
