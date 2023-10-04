@@ -101,7 +101,7 @@ const About: NextPage<AboutPageProps> = ({ data }) => {
           >
             {data.about.content}
           </ReactMarkdown>
-          <a href="/resume" target="_blank">
+          <a href="https://resume.io/r/f6cCyb6zF" rel="noopener" target="_blank">
             <MyButton bgColor="orange" color="paper">
               View my resume
             </MyButton>
