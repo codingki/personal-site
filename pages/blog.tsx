@@ -22,7 +22,7 @@ const Blog: NextPage<BlogPageProps> = ({ data }) => {
           images: [
             {
               url: encodeURI(
-                "https://kikiding.space/api/social-image?title=My Blog&description=A place to share something &path=https://kikiding.space/blog",
+                "https://kikiding.space/api/social-image?title=Kiki's Blog&description=A place to share something",
               ),
               width: 1200,
               height: 630,

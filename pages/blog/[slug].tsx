@@ -30,9 +30,10 @@ const SingleBlog: NextPage<SingleBlogPageProps> = ({ data }) => {
           description: data.blog?.excerpt || "",
           images: [
             {
-              url: encodeURI(
-                `https://kikiding.space/api/social-image?title=${data.blog?.title}&description=${data.blog?.excerpt}&path=https://kikiding.space/blog/${data.blog?.slug}`,
-              ),
+              url: `https://kikiding.space/api/social-image?title=${encodeURIComponent(
+                data.blog?.title || "",
+              )}&description=${encodeURIComponent(data.blog?.excerpt || "")}`,
+
               width: 1200,
               height: 630,
               alt: data.blog?.title || "",

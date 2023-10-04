@@ -22,7 +22,7 @@ const Works: NextPage<WorksPageProps> = ({ data }) => {
           images: [
             {
               url: encodeURI(
-                "https://kikiding.space/api/social-image?title=My Works&description=Project that I've touched&path=https://kikiding.space/works",
+                "https://kikiding.space/api/social-image?title=Kiki's Works&description=Project that I've touched",
               ),
               width: 1200,
               height: 630,

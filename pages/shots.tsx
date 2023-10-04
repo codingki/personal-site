@@ -57,9 +57,7 @@ export const Shots: NextPage<ShotsPageProps> = ({ data }) => {
           description: "Shots by Kiki",
           images: [
             {
-              url: encodeURI(
-                "https://kikiding.space/api/social-image?title=Shots&description=Shots by Kiki&path=https://kikiding.space/shots",
-              ),
+              url: encodeURI("https://kikiding.space/api/social-image?title=Shots&description=Shots by Kiki"),
               width: 1200,
               height: 630,
               alt: "kikiding.space",
