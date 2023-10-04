@@ -1,5 +1,6 @@
-import { Image, Modal, ModalContent, ModalOverlay, SimpleGrid, Text, useDisclosure } from "@chakra-ui/react";
+import { Modal, ModalContent, ModalOverlay, SimpleGrid, Text, useDisclosure } from "@chakra-ui/react";
 import { CardShell } from "components/Card";
+import { ChakraNextImage } from "components/Image";
 import type { ShotsPageQuery } from "graphql/generated";
 import { ShotsPageDocument } from "graphql/generated";
 import { request } from "lib/request";
@@ -85,10 +86,10 @@ export const Shots: NextPage<ShotsPageProps> = ({ data }) => {
               }}
               p="2"
             >
-              <Image
+              <ChakraNextImage
                 alt={item.filename}
                 className="handDrawnBorderLight"
-                fallbackSrc="image-loading.jpg"
+                height="140px"
                 src={item.url}
                 verticalAlign="middle"
                 width="100%"
@@ -102,12 +103,12 @@ export const Shots: NextPage<ShotsPageProps> = ({ data }) => {
       </SimpleGrid>
       <Modal isCentered isOpen={isOpen} onClose={onClose} size="5xl">
         <ModalOverlay />
-        <ModalContent backgroundColor="transparent" px={4}>
+        <ModalContent backgroundColor="transparent" borderRadius={0} p="2" py={8}>
           <CardShell onClick={onOpen} p="2">
-            <Image
+            <ChakraNextImage
               alt="11"
               className="handDrawnBorderLight"
-              fallbackSrc="image-loading.jpg"
+              height="50vw"
               src={selectedIndex ? shots?.[Number(selectedIndex)]?.url : ""}
               verticalAlign="middle"
               width="100%"
