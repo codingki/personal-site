@@ -54,27 +54,6 @@ const SingleBlog: NextPage<SingleBlogPageProps> = ({ data }) => {
           <Text fontSize="lg" fontWeight="semibold">
             {data.blog?.categories} | {data.blog?.date ? format(new Date(data.blog.date), "dd MMM yyyy") : null}
           </Text>
-          <NextLink
-            href={`https://twitter.com/intent/tweet?url=https://kikiding.space/works/${data.blog?.slug}&text=${data.blog?.title}`}
-            passHref
-          >
-            <SocialButton
-              alignSelf="flex-start"
-              as="a"
-              bgColor="twitter.500"
-              color="paper"
-              fontSize="md"
-              mb={4}
-              px={3}
-              py={0.5}
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-expect-error
-              target="_blank"
-            >
-              <Twitter color="paper" />
-              Share to twitter
-            </SocialButton>
-          </NextLink>
           <ReactMarkdown
             components={{
               ...ChakraUIRenderer(),
@@ -118,7 +97,28 @@ const SingleBlog: NextPage<SingleBlogPageProps> = ({ data }) => {
             skipHtml
           >
             {data.blog?.content || ""}
-          </ReactMarkdown>
+          </ReactMarkdown>{" "}
+          <NextLink
+            href={`https://twitter.com/intent/tweet?url=https://kikiding.space/works/${data.blog?.slug}&text=${data.blog?.title}`}
+            passHref
+          >
+            <SocialButton
+              alignSelf="flex-start"
+              as="a"
+              bgColor="twitter.500"
+              color="paper"
+              fontSize="md"
+              mb={4}
+              px={3}
+              py={0.5}
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-expect-error
+              target="_blank"
+            >
+              <Twitter color="paper" />
+              Share to twitter
+            </SocialButton>
+          </NextLink>
         </Flex>
       </SinglePageContent>
     </>

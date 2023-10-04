@@ -155,7 +155,7 @@ const SingleWork: NextPage<SingleWorkPageProps> = ({ data }) => {
           <Flex gap={2} wrap="wrap">
             {data.work?.deployment?.split(", ").map((item) => {
               const val = item.split(": ");
-              const txt = `${val[0]?.charAt(0).toUpperCase()} ${val[0]?.slice(1)}`;
+              const txt = `${val[0]?.charAt(0).toUpperCase()}${val[0]?.slice(1)}`;
               return (
                 <a key={val[1]} href={val[1]} rel="noopener" target="_blank">
                   <MyButton
@@ -202,6 +202,7 @@ const SingleWork: NextPage<SingleWorkPageProps> = ({ data }) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const workRes = await request<AllworkQuery>(AllworkDocument);
   const allWorks = workRes.allWorks;
+
   return {
     paths: allWorks.map((post) => `/works/${post.slug}`),
     fallback: false,
@@ -210,7 +211,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const data = await request(SingleWorkDocument, { slug: params?.slug });
-
   return {
     props: { data },
   };
