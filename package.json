@@ -42,7 +42,7 @@
     "@types/react-dom": "18.2",
     "eslint": "^8.46.0",
     "prettier": "^3.0.1",
-    "typescript": "^4"
+    "typescript": "^5"
   },
   "lint-staged": {
     "**/*.{js,cjs,mjs,ts,tsx}": [
