@@ -33,6 +33,7 @@ const Swap: NextPage = () => {
       />
       <SinglePageContent
         alignSelf="center"
+        backgroundColor="#FFFFFF"
         className="handDrawnBorderLight"
         justifySelf="center"
         minH={["75vh", "65vh"]}
@@ -40,7 +41,11 @@ const Swap: NextPage = () => {
         w="450px"
       >
         <SwapWidgetProvider>
-          <SwapWidget />
+          <SwapWidget
+            colors={{
+              primary: "rgb(249, 90, 44)",
+            }}
+          />
         </SwapWidgetProvider>
       </SinglePageContent>
     </>
