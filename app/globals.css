@@ -8,8 +8,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-space-grotesk);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +21,114 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-space-grotesk), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+}
+
+@keyframes fadeInGlow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.glow-animate {
+  animation: fadeInGlow 1s ease-in-out forwards;
+}
+
+.glow-pulse {
+  animation: fadeInGlow 1.5s ease-in-out forwards, pulseGlow 3s ease-in-out 1.5s infinite;
+}
+
+@keyframes cloudMove {
+  0% {
+    transform: translateX(-100px);
+  }
+  100% {
+    transform: translateX(calc(100vw + 100px));
+  }
+}
+
+@keyframes cloudMoveSlow {
+  0% {
+    transform: translateX(-150px);
+  }
+  100% {
+    transform: translateX(calc(100vw + 150px));
+  }
+}
+
+@keyframes fogDrift {
+  0% {
+    transform: translateX(-100px) translateY(-50px);
+  }
+  25% {
+    transform: translateX(100px) translateY(-100px);
+  }
+  50% {
+    transform: translateX(150px) translateY(50px);
+  }
+  75% {
+    transform: translateX(-50px) translateY(100px);
+  }
+  100% {
+    transform: translateX(-100px) translateY(-50px);
+  }
+}
+
+.cloud {
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow:
+    60px 20px 0 -5px rgba(255, 255, 255, 0.8),
+    -60px 20px 0 -5px rgba(255, 255, 255, 0.8),
+    0 -30px 0 -15px rgba(255, 255, 255, 0.8),
+    60px -20px 0 -10px rgba(255, 255, 255, 0.8),
+    -60px -20px 0 -10px rgba(255, 255, 255, 0.8);
+}
+
+.fog {
+  backdrop-filter: blur(60px);
+  filter: blur(30px);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  transform: translateZ(0);
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1) translateZ(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) translateZ(0);
+  }
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+.texture-overlay {
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.08) 0px, transparent 1px, transparent 2px, rgba(255,255,255,0.08) 3px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.08) 0px, transparent 1px, transparent 2px, rgba(255,255,255,0.08) 3px),
+    radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+  background-size: 20px 20px, 20px 20px, 10px 10px;
+  opacity: 0.9;
+  mix-blend-mode: overlay;
 }
