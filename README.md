@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# kikiding.space
 
-## Getting Started
+Personal portfolio website featuring an interactive 3D card design with stunning visual effects.
 
-First, run the development server:
+## 🛠️ Tech Stack
+
+- **Styling**: Tailwind CSS v4
+- **SEO**: next-seo
+- **Icons**: Lucide React
+- **Font**: Space Grotesk
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 20.x (using nvm: `nvm use 20`)
+- Yarn package manager
+
+### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Install dependencies
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Run development server
+nvm use 20
+yarn dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-## Learn More
+### Build
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Create production build
+nvm use 20
+yarn build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Production
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+# Start production server
+yarn start
+```
 
-## Deploy on Vercel
+## 📁 Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+├── app/
+│   ├── components/
+│   │   ├── CardEffects.tsx      # Glassmorphism and spotlight effects
+│   │   ├── FogOverlay.tsx       # Animated fog elements
+│   │   ├── JsonLd.tsx           # Structured data (JSON-LD)
+│   │   ├── ProfileCard.tsx      # Main card component with 3D logic
+│   │   ├── ProfileCardFront.tsx # Front side of the card
+│   │   ├── ProfileCardBack.tsx  # Back side of the card
+│   │   ├── SEOConfig.tsx        # SEO meta tags configuration
+│   │   ├── SkillsSection.tsx    # Skills display
+│   │   ├── SocialLinks.tsx      # Social media links
+│   │   └── StarField.tsx        # Animated background stars
+│   ├── globals.css              # Global styles and animations
+│   ├── layout.tsx               # Root layout with SEO
+│   └── page.tsx                 # Home page
+├── public/
+│   ├── og-image.png             # Open Graph image
+│   ├── me.png                   # Profile image
+│   └── robots.txt               # Robots file
+└── package.json
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📝 License
+
+Personal project - All rights reserved
+
+## 👤 Author
+
+**Nur Fikri (Kiki)**
+- Website: [kikiding.space](https://kikiding.space)
+- GitHub: [@codingki](https://github.com/codingki)
+- Twitter: [@kikiding](https://twitter.com/kikiding)
+- LinkedIn: [nur-fikri](https://linkedin.com/in/nur-fikri)
+
+---
+
+Built with ❤️ using Next.js and TypeScript
